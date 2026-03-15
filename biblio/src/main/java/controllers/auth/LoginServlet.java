@@ -8,23 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.inject.Inject;
 
+import config.Wiring;
 import entities.Usuario;
 import interfaces.auth.LoginServiceInterface;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    @Inject
+
     private LoginServiceInterface service;
-    
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        service = Wiring.getLoginService(getServletContext());
+    }
+
     @Override
     protected void doPost(
-        HttpServletRequest request, 
+        HttpServletRequest request,
         HttpServletResponse response
-    ) throws ServletException, IOException
-    {
-        try{
+    ) throws ServletException, IOException {
+        try {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
@@ -32,16 +37,15 @@ public class LoginServlet extends HttpServlet {
             Usuario user = this.service.login(email, password, session);
 
             request.setAttribute("message", user != null ? "Autenticación exitosa" : "Usuario o contraseña incorrectos");
-            request.setAttribute("code", user != null ? 200 : 403);            
-            request.getRequestDispatcher("home.jsp")
-            .forward(request, response);
-        }catch(Exception e){
+            request.setAttribute("code", user != null ? 200 : 403);
+            request.getRequestDispatcher(user != null ? "home.jsp" : "index.jsp")
+                .forward(request, response);
+        } catch (Exception e) {
             System.out.println(e);
             request.setAttribute("message", "Ocurrió un error al autenticar el usuario");
             request.setAttribute("code", 500);
             request.getRequestDispatcher("login.jsp")
-            .forward(request, response);
+                .forward(request, response);
         }
-    } 
-    
+    }
 }

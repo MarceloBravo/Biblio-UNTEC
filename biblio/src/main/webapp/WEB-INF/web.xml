@@ -6,11 +6,9 @@
              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!-- Inicializa CDI (Weld) -->
+    <!-- Wiring: crea LoginService y lo deja en el contexto -->
     <listener>
-        <listener-class>
-            org.jboss.weld.environment.servlet.Listener
-        </listener-class>
+        <listener-class>listeners.AppWiringListener</listener-class>
     </listener>
 
     <display-name>Archetype Created Web Application</display-name>
