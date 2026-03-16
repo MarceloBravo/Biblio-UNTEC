@@ -2,9 +2,7 @@ dao\auth\LoginDAO.class
 interfaces\dao\LoginDAOInterface.class
 interfaces\auth\LoginServiceInterface.class
 services\auth\LoginService.class
-config\WebKeys.class
 controllers\auth\LoginServlet.class
-listeners\AppWiringListener.class
 utils\ConnectionMySql.class
 entities\Usuario.class
 interfaces\utils\ConnectionMySqlInterface.class

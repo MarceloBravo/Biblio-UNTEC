@@ -17,30 +17,21 @@ public class ConnectionMySql implements ConnectionMySqlInterface {
     /** Contraseña del usuario MySQL. Si 'root' tiene contraseña, cámbiala aquí. */
     private static String password = "admin123";
 
-    private static ConnectionMySql instance;
-
-    private ConnectionMySql() {}
-
-    public static synchronized ConnectionMySql getInstance() {
-        if (instance == null) {
-            instance = new ConnectionMySql();
-        }
-        return instance;
-    }
+    public ConnectionMySql() {}
 
     @Override
     public Connection getConnection() {
-        if (cnn == null) {
-            try {
+        try {
+            if (cnn == null || cnn.isClosed()) {
                 Class.forName(driver);
                 Properties props = new Properties();
                 props.setProperty("user", user);
                 props.setProperty("password", password);
                 cnn = DriverManager.getConnection(strConnect, props);
-            } catch (Exception e) {
-                System.out.println(e);
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
         }
         return cnn;
     }
