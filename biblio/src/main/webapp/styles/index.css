@@ -1,19 +1,22 @@
 body{
-    background-color: var(--bs-body-bg);
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    background-color: #f4f4f4;
+    background-color: #c1c3c0;
     align-items: center;
     flex-direction: column;
 }
 
+h2{
+    font-family: sans-serif;
+}
+
 form{
     background: white;
-    padding: 2rem;
+    padding: 1rem 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;

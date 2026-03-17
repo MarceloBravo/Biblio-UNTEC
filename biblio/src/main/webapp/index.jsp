@@ -8,22 +8,21 @@
         <link rel="stylesheet" href="/styles/index.css">
     </head>
     <body>
-        <h2>Vienvenido a la biblioteca virtual de UNTEC!</h2>
+        <h2>Biblioteca virtual de UNTEC!</h2>
 
         <form action="login" method="post">
             <h3>Login</h3>
-            <div>
-                <label for="txt_email">Email</label>
-                <input type="email" id="txt-email" name="email" placeholder="ingresa tu email" maxlength="255"/>
+            <div class="form-group row">
+                <input type="text" class="form-control" id="id-email" name="email" placeholder="ingresa tu email" maxlength="255" required>
             </div>
-            <div>
-                <label for="txt_password">Password</label>
-                <input type="password" id="txt_password" name="password" placeholder="ingresa tu contraseña" maxlength="30"/>
+            <div class="form-group row">
+                <input type="password" class="form-control" id="id-password" name="password" placeholder="ingresa tu contraseña" maxlength="30" required>
             </div>
+
             <div class="btn-container">
                 <button class="btn btn-primary">Iniciar Sesión</button>
             </div>
-            <p>¿No tienes una cuenta? <a href="/register">Registrate acá</a></p>
+            <p>¿No tienes una cuenta? <a href="registerUser.jsp">Registrate acá</a></p>
         </form>
     </body>
 </html>

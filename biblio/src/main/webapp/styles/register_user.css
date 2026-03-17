@@ -1,0 +1,14 @@
+form{
+    padding: 2em;
+}
+
+.form-group{
+    margin-bottom: 1em;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2em;
+    column-gap: 20px;
+}
