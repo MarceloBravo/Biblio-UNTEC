@@ -10,7 +10,7 @@ import javax.naming.InitialContext;
 
 public final class InjectionBeanCDI extends HttpServlet {
     
-    public <T> T getInitBeanCDI(Class<T> serviceClass, ServletConfig sc) throws ServletException {
+    public <T> T getInitBeanCDI(ServletConfig sc, Class<T> serviceClass) throws ServletException {
         try {
            BeanManager bm = null;
             Object bmObj = sc.getServletContext()

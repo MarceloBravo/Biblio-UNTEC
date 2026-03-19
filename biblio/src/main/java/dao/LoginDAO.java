@@ -1,4 +1,4 @@
-package dao.auth;
+package dao;
 
 import java.sql.Connection;
 
@@ -18,37 +18,40 @@ import javax.enterprise.context.ApplicationScoped;
 public class LoginDAO implements LoginDAOInterface {
     private ConnectionMySqlInterface connectionMySql;
 
-    public LoginDAO() {}
+    public LoginDAO() {
+    }
 
     @Inject
     public LoginDAO(ConnectionMySqlInterface connectionMySql) {
         this.connectionMySql = connectionMySql;
     }
-    
-    public Usuario login(String email, String password){
+
+    public Usuario login(String email, String password) {
         Usuario user = null;
         String Query = "SELECT * FROM usuarios WHERE email = ?";
-        try (Connection cnn = connectionMySql.getConnection();
-             PreparedStatement ps = cnn.prepareStatement(Query)) {
-            
-            ps.setString(1, email);
-            //ps.setString(2, password);
+        try (
+                Connection cnn = connectionMySql.getConnection();
+                PreparedStatement ps = cnn.prepareStatement(Query)) {
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if(rs.next()){
+            ps.setString(1, email);
+            // ps.setString(2, password);
+
+            try (
+                    ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
                     String passDesdeBD = rs.getString("password");
                     boolean isLogued = this.CheckPassword(password, passDesdeBD);
                     user = isLogued ? this.getUserData(rs) : null;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
         }
         return user;
     }
 
-    private boolean CheckPassword(String passwordIngresadaPorUsuario, String passDesdeBD){
+    private boolean CheckPassword(String passwordIngresadaPorUsuario, String passDesdeBD) {
         return BCrypt.checkpw(passwordIngresadaPorUsuario, passDesdeBD);
     }
 
@@ -58,5 +61,5 @@ public class LoginDAO implements LoginDAOInterface {
         user.setAppelidos(rs.getString("apellidos"));
         user.setEmail(rs.getString("email"));
         return user;
-    }   
+    }
 }

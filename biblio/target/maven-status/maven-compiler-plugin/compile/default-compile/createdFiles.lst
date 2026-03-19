@@ -1,6 +1,6 @@
 dao\auth\LoginDAO.class
-interfaces\dao\LoginDAOInterface.class
 interfaces\auth\LoginServiceInterface.class
+interfaces\dao\LoginDAOInterface.class
 services\auth\LoginService.class
 controllers\auth\LoginServlet.class
 utils\ConnectionMySql.class

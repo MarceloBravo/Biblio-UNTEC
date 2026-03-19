@@ -1,4 +1,4 @@
-package controllers.auth;
+package controllers;
 
 import java.io.IOException;
 
@@ -19,11 +19,10 @@ public class LoginServlet extends HttpServlet {
 
     private LoginServiceInterface service;
 
-
     @Override
     public void init() throws ServletException {
         ServletConfig sc = this.getServletConfig();
-        this.service = (new InjectionBeanCDI()).getInitBeanCDI(LoginServiceInterface.class, sc);
+        this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, LoginServiceInterface.class);
     }
 
     @Override

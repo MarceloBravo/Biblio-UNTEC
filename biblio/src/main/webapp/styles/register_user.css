@@ -1,14 +1,14 @@
-form{
+form {
     padding: 2em;
 }
 
-.form-group{
+.form-group {
     margin-bottom: 1em;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     justify-content: flex-end;
-    padding-right: 2em;
+    padding: 2em;
     column-gap: 20px;
 }
