@@ -7,9 +7,14 @@
         <%@include file="/fragments/header_scripts.jsp" %>
         <link href="/styles/navbarHome.css" rel="stylesheet">
         <link href="/styles/users/usuariosList.css" rel="stylesheet">
+        <link href="/styles/modal.css" rel="stylesheet">
+
+        <script src="/usuarios/usuarios.js"></script>
+        <script src="/js/modal.js" type="module"></script>
     </head>
     <body>
         <%@include file="/fragments/navbarHome.jsp" %>
+        <%@include file="/fragments/modal.jsp" %>
         
         <div class="container">
             <h3>Mantendor de usuarios</h3>
@@ -76,13 +81,37 @@
                 </div>
             </form>
 
-            <form id="deleteForm" action="/users/eliminar" method="post">
-                <input type="hidden" name="id" value="<c:out value='${usuario.id}'/>"/>
+            <form id="delete-form" action="/users/eliminar" method="post">
+                <input type="hidden" name="id" id="delete-id" value="<c:out value='${usuario.id}'/>"/>
             </form>
 
             <div class="btn-container">
-                <button class="btn btn-success" onClick="document.getElementById('userForm').submit();">Grabar</button>
-                <button type="button" class="btn btn-danger" onClick="document.getElementById('deleteForm').submit();">Eliminar</button>
+                <button 
+                    type="button"  
+                    class="btn btn-success" 
+                    onclick="showModal(
+                        'userForm',
+                        null,
+                        'Nuevo usuario',
+                        '¿Desea grabar el registro?',
+                        'Grabar'
+                    )">
+                        Grabar
+                    </button>
+
+                <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    onclick="showModal(
+                        'delete-form',
+                        '${usuario.id}',
+                        'Eliminar usuario',
+                        '¿Desea eliminar el registro?',
+                        'Eliminar'
+                    );"
+                >
+                    Eliminar
+                </button>
                 <a class="btn btn-primary" href="/users">Cancelar</a>
             </div>
 
