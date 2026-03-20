@@ -75,9 +75,11 @@
                     </c:forEach>
                 </tbody>
             </table>
+            <%@include file="/fragments/pagination.jsp" %>
             <form id="delete-form" action="/users/eliminar" method="post"> 
                 <input type="hidden" name="id" id="delete-id" value="" />
             </form>
+            
         </div>
 
     </body>

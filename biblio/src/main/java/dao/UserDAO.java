@@ -10,6 +10,8 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import dto.PaginationDTO;
+import dto.UserListDTO;
 import entities.Usuario;
 import interfaces.dao.UserDAOInterface;
 import interfaces.utils.ConnectionMySqlInterface;
@@ -27,8 +29,11 @@ public class UserDAO implements UserDAOInterface {
     }
 
     @Override
-    public List<Usuario> list(Integer desde, Integer filas) {
-        List<Usuario> result = new ArrayList<>();
+    public UserListDTO list(Integer desde, Integer filas) {
+        UserListDTO result = new UserListDTO();
+        PaginationDTO pagDTO = new PaginationDTO();
+        List<Usuario> data = new ArrayList<>();
+        Integer totReg = this.getTotReg("", null);
         String query = "Select id, nombre, apellidos, email from usuarios ORDER BY id ASC LIMIT ?, ?";
         try{
             Connection cnn = connectionMySql.getConnection();
@@ -38,9 +43,11 @@ public class UserDAO implements UserDAOInterface {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Usuario user = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("email"));
-                result.add(user);
+                data.add(user);
             }
-            return result;
+            result.setData(data);
+            pagDTO.setTotReg(totReg);
+            result.setPagination(pagDTO);
         }catch(Exception e){
             System.out.print(e);
         }
@@ -48,9 +55,13 @@ public class UserDAO implements UserDAOInterface {
     }
     
     @Override
-    public List<Usuario> list(Integer desde, Integer filas, String search) {
-        List<Usuario> result = new ArrayList<>();
-        String query = "Select id, nombre, apellidos, email from usuarios WHERE nombre Like ? OR apellidos Like ? OR email Like ? ORDER BY id ASC LIMIT ?, ?";
+    public UserListDTO list(Integer desde, Integer filas, String search) {
+        UserListDTO result = new UserListDTO();
+        PaginationDTO pagDTO = new PaginationDTO();
+        List<Usuario> data = new ArrayList<>();
+        String where = "WHERE nombre Like ? OR apellidos Like ? OR email Like ?";
+        Integer totReg = this.getTotReg(where, search);
+        String query = "Select id, nombre, apellidos, email from usuarios " + where + " ORDER BY id ASC LIMIT ?, ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -62,8 +73,11 @@ public class UserDAO implements UserDAOInterface {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Usuario user = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("email"));
-                result.add(user);
+                data.add(user);
             }
+            result.setData(data);
+            pagDTO.setTotReg(totReg);
+            result.setPagination(pagDTO);
             return result;
         }catch(Exception e){
             System.out.print(e);
@@ -182,4 +196,23 @@ public class UserDAO implements UserDAOInterface {
         }
     }
 
+    private Integer getTotReg(String where, String search){
+        String query = "SELECT COUNT(*) FROM usuarios " + where;
+        try{
+            Connection cnn = connectionMySql.getConnection();
+            PreparedStatement ps = cnn.prepareStatement(query);
+            if(search != null){
+                ps.setString(1, "%" + search + "%");
+                ps.setString(2, "%" + search + "%");
+                ps.setString(3, "%" + search + "%");
+            }
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return 0;
+    }
 }

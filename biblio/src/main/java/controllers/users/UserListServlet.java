@@ -1,7 +1,6 @@
 package controllers.users;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
-import entities.Usuario;
+import dto.UserListDTO;
 import interfaces.users.UserServiceInterface;
 
 @WebServlet("/users")
@@ -36,14 +35,18 @@ public class UserListServlet extends HttpServlet {
         Integer desde = Integer.parseInt((strDesde != null ? strDesde : "0"));
         Integer filas = Integer.parseInt(strFilas != null ? strFilas : "10");
         
-        List<Usuario> result = null;
+        UserListDTO result = null;
         if(search != null && !search.isEmpty()){
             result = this.service.list(desde,filas, search);
         }else{
             result = this.service.list(desde,filas);
         }
 
-        request.setAttribute("data", result);
+        result.getPagination().setUrl("users");
+        result.getPagination().CalcularPaginas(desde, filas);
+
+        request.setAttribute("data", result.getData());
+        request.setAttribute("pagination", result.getPagination());
         request.setAttribute("code", 200);
         request.setAttribute("search", search);
         request.getRequestDispatcher("/usuarios/usuariosList.jsp").forward(request, response);

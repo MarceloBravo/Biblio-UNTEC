@@ -1,7 +1,10 @@
 controllers\users\UserListServlet.class
 interfaces\dao\UserDAOInterface.class
-controllers\users\UserDeleteServlet.class
 controllers\users\UserNuewServlet.class
+controllers\users\UserGetServlet.class
+dao\UserDAO.class
+controllers\LoginServlet.class
+controllers\users\UserDeleteServlet.class
 controllers\users\UserRegisterServlet.class
 interfaces\auth\LoginServiceInterface.class
 services\UserService.class
@@ -11,11 +14,8 @@ utils\StringUtils.class
 interfaces\users\UserServiceInterface.class
 interfaces\dao\LoginDAOInterface.class
 interfaces\utils\StringUtilsInterface.class
-controllers\users\UserGetServlet.class
 controllers\users\UserSaveServlet.class
-dao\UserDAO.class
 services\LoginService.class
 utils\ConnectionMySql.class
 entities\Usuario.class
-controllers\LoginServlet.class
 interfaces\utils\ConnectionMySqlInterface.class

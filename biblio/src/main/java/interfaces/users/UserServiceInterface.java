@@ -1,14 +1,13 @@
 package interfaces.users;
 
-import java.util.List;
-
+import dto.UserListDTO;
 import entities.Usuario;
 
 public interface UserServiceInterface {
     
-    public List<Usuario> list(Integer desde, Integer filas);
+    public UserListDTO list(Integer desde, Integer filas);
 
-    public List<Usuario> list(Integer desde, Integer filas, String search);
+    public UserListDTO list(Integer desde, Integer filas, String search);
 
     public Usuario getById(Integer id);
 

@@ -1,10 +1,9 @@
 package services;
 
-import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import dto.UserListDTO;
 import entities.Usuario;
 import interfaces.dao.UserDAOInterface;
 import interfaces.users.UserServiceInterface;
@@ -28,12 +27,12 @@ public class UserService implements UserServiceInterface{
     }
 
     @Override
-    public List<Usuario> list(Integer desde, Integer filas){
+    public UserListDTO list(Integer desde, Integer filas){
         return this.dao.list(desde, filas);
     }
 
     @Override
-    public List<Usuario> list(Integer desde, Integer filas, String search){
+    public UserListDTO list(Integer desde, Integer filas, String search){
         return this.dao.list(desde, filas, search);
     }
 
