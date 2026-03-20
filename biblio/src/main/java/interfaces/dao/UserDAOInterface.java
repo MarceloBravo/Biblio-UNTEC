@@ -6,14 +6,17 @@ import entities.Usuario;
 
 public interface UserDAOInterface {
     
-    public List<Usuario> list();
+    public List<Usuario> list(Integer desde, Integer filas);
+    
+    public List<Usuario> list(Integer desde, Integer filas, String search);
 
-    public Usuario find(Integer id);
+    public Usuario getById(Integer id);
 
     public Usuario create(Usuario user);
 
-    public void update(Usuario user);
+    public Usuario update(Usuario user);
 
-    public void delete(Usuario user);
+    public boolean delete(Usuario user);
 
+    public Usuario findByEmail(String email);
 }

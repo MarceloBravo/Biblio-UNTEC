@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -25,11 +26,53 @@ public class UserDAO implements UserDAOInterface {
         this.connectionMySql = connectionMySql;
     }
 
-    public List<Usuario> list() {
-        return null;
+    @Override
+    public List<Usuario> list(Integer desde, Integer filas) {
+        List<Usuario> result = new ArrayList<>();
+        String query = "Select id, nombre, apellidos, email from usuarios ORDER BY id ASC LIMIT ?, ?";
+        try{
+            Connection cnn = connectionMySql.getConnection();
+            PreparedStatement ps = cnn.prepareStatement(query);
+            ps.setInt(1, desde);
+            ps.setInt(2, filas);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Usuario user = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("email"));
+                result.add(user);
+            }
+            return result;
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        return result;
+    }
+    
+    @Override
+    public List<Usuario> list(Integer desde, Integer filas, String search) {
+        List<Usuario> result = new ArrayList<>();
+        String query = "Select id, nombre, apellidos, email from usuarios WHERE nombre Like ? OR apellidos Like ? OR email Like ? ORDER BY id ASC LIMIT ?, ?";
+        try{
+            Connection cnn = connectionMySql.getConnection();
+            PreparedStatement ps = cnn.prepareStatement(query);
+            ps.setString(1, "%" + search + "%");
+            ps.setString(2, "%" + search + "%");
+            ps.setString(3, "%" + search + "%");
+            ps.setInt(4, desde);
+            ps.setInt(5, filas);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Usuario user = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("email"));
+                result.add(user);
+            }
+            return result;
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        return result;
     }
 
-    public Usuario find(Integer id) {
+    @Override
+    public Usuario getById(Integer id) {
         String query = "SELECT * FROM usuarios WHERE id = ?";
         try {
             Connection cnn = connectionMySql.getConnection();
@@ -40,7 +83,7 @@ public class UserDAO implements UserDAOInterface {
                 Usuario user = new Usuario();
                 user.setId(rs.getInt("id"));
                 user.setNombre(rs.getString("nombre"));
-                user.setAppelidos(rs.getString("apellidos"));
+                user.setApellidos(rs.getString("apellidos"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 return user;
@@ -51,6 +94,7 @@ public class UserDAO implements UserDAOInterface {
         return null;
     }
 
+    @Override
     public Usuario findByEmail(String email) {
         String query = "SELECT * FROM usuarios WHERE email = ?";
         try {
@@ -62,7 +106,7 @@ public class UserDAO implements UserDAOInterface {
                 Usuario user = new Usuario();
                 user.setId(rs.getInt("id"));
                 user.setNombre(rs.getString("nombre"));
-                user.setAppelidos(rs.getString("apellidos"));
+                user.setApellidos(rs.getString("apellidos"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 return user;
@@ -73,18 +117,14 @@ public class UserDAO implements UserDAOInterface {
         return null;
     }
 
+    @Override
     public Usuario create(Usuario user) {
         String query = "INSERT INTO usuarios (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)";
         try {
-            Usuario userFound = this.findByEmail(user.getEmail());
-            if (userFound != null) {
-                System.out.println("El usuario ya existe");
-                throw new Exception("El usuario ya existe");
-            }
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getNombre());
-            ps.setString(2, user.getAppelidos());
+            ps.setString(2, user.getApellidos());
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getPassword());
             int affectedRows = ps.executeUpdate();
@@ -107,12 +147,39 @@ public class UserDAO implements UserDAOInterface {
         return id;
     }
 
-    public void update(Usuario user) {
+    @Override
+    public Usuario update(Usuario user) {
+        String query = "UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?, password = ? WHERE id = ?;";
+        try {           
+            Connection cnn = connectionMySql.getConnection();
+            PreparedStatement ps = cnn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, user.getNombre());
+            ps.setString(2, user.getApellidos());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
+            ps.setInt(5, user.getId());
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0 ? user : null;
 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return user;
     }
 
-    public void delete(Usuario user) {
-
+    @Override
+    public boolean delete(Usuario user) {
+        String query = "DELETE FROM usuarios WHERE id = ?";
+        try {
+            Connection cnn = connectionMySql.getConnection();
+            PreparedStatement ps = cnn.prepareStatement(query);
+            ps.setInt(1, user.getId());
+            ps.executeUpdate();
+            return true;
+        }catch(Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
 }

@@ -14,7 +14,8 @@
             <%@include file="/fragments/navbar.jsp" %>
 
                 <h3>Registro de usuarios</h3>
-                <form action="${pageContext.request.contextPath}/users" method="post">
+                <form action="${pageContext.request.contextPath}/register" method="post">
+                    <input type="hidden" name="accion" value="registrar" />
                     <div class="form-group row">
                         <label for="id-nombre" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">

@@ -1,0 +1,8 @@
+nav{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.navbar-collapse{
+    justify-content: space-between;
+}

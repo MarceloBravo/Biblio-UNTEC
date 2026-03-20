@@ -17,6 +17,14 @@ public class Usuario {
         this.password = password;
     }
     
+    public Usuario(Integer id, String nombre, String apellidos, String email) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.password = null;
+    }
+    
     public Usuario(Integer id, String nombre, String apellidos, String email, String password) {
         this.id = id;
         this.nombre = nombre;
@@ -34,7 +42,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public void setAppelidos(String apellidos) {
+    public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
 
@@ -55,7 +63,7 @@ public class Usuario {
         return nombre;
     }
 
-    public String getAppelidos() {
+    public String getApellidos() {
         return apellidos;
     }
 

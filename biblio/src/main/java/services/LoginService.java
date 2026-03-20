@@ -25,9 +25,6 @@ public class LoginService implements LoginServiceInterface {
 
     public Usuario login(String email, String password, HttpSession session) {
         Usuario user = dao.login(email, password);
-        // String passwordHashed = BCrypt.hashpw(password, BCrypt.gensalt());
-        // System.out.println("********************");
-        // System.out.println(passwordHashed);
         if (user != null) {
             session.setAttribute("userSession", user);
         }

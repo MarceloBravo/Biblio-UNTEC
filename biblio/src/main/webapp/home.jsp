@@ -5,9 +5,11 @@
     <head>
         <title>Biblioteca Virtual</title>
         <%@include file="/fragments/header_scripts.jsp" %>
+        <link href="styles/navbarHome.css" rel="stylesheet">
     </head>
     <body>
-        <h2>Bienvenido a la biblioteca virtual de UNTEC!</h2>
+        <%@include file="/fragments/navbarHome.jsp" %>
+        
         <h3>Home</h3>
     </body>
 </body>

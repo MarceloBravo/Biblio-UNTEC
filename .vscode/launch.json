@@ -1,13 +1,19 @@
-
 {
     "version": "0.2.0",
     "configurations": [
         {
-        "type": "java",
-        "name": "Adjuntar a Tomcat (5005)",
-        "request": "attach",
-        "hostName": "localhost",
-        "port": 5005
+            "type": "java",
+            "name": "Depurar (Anexar a Tomcat)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000
+        },
+        {
+            "type": "java",
+            "name": "Adjuntar a Tomcat (5005)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005
         }
     ]
-    }
+}

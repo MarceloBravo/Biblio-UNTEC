@@ -58,7 +58,7 @@ public class LoginDAO implements LoginDAOInterface {
     private Usuario getUserData(ResultSet rs) throws Exception {
         Usuario user = new Usuario();
         user.setNombre(rs.getString("nombre"));
-        user.setAppelidos(rs.getString("apellidos"));
+        user.setApellidos(rs.getString("apellidos"));
         user.setEmail(rs.getString("email"));
         return user;
     }

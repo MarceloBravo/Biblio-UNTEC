@@ -1,4 +1,4 @@
-package controllers;
+package controllers.users;
 
 import java.io.IOException;
 
@@ -13,9 +13,8 @@ import cdi.InjectionBeanCDI;
 import entities.Usuario;
 import interfaces.users.UserServiceInterface;
 
-@WebServlet("/users")
-public class UserServlet extends HttpServlet {
-    private UserServiceInterface service;
+@WebServlet("/register")
+public class UserRegisterServlet extends HttpServlet {private UserServiceInterface service;
 
     @Override
     public void init() throws ServletException {
@@ -23,21 +22,25 @@ public class UserServlet extends HttpServlet {
         this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, UserServiceInterface.class);
     }
 
+
     @Override
     public void doPost(
             HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-        try {
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        try{
+            String accion = request.getParameter("accion");
             Usuario user = this.getParams(request);
             this.service.save(user);
-            System.out.println(user);
+            
+            if(accion == null){
+                accion = "registrar";
+            }
 
             request.setAttribute("usuario", user);
-            request.setAttribute("message",
-                    user != null ? "Usuario registrado con éxito" : "El usuario no pudo ser creado");
+            request.setAttribute("message", user != null ? "Usuario registrado con éxito" : "El usuario no pudo ser creado");
             request.setAttribute("code", user != null ? 200 : 500);
-            request.getRequestDispatcher("index.jsp")
-                    .forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
             request.setAttribute("message", "Ocurrió un error al registrar el usuario");
@@ -47,13 +50,20 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+
     private Usuario getParams(HttpServletRequest request) {
         Usuario user = new Usuario();
+        String id = request.getParameter("id");
+        if(id != null && !id.isEmpty()){
+            user.setId(Integer.parseInt(id));
+        }
         user.setNombre(request.getParameter("nombre"));
-        user.setAppelidos(request.getParameter("apellidos"));
+        user.setApellidos(request.getParameter("apellidos"));
         user.setEmail(request.getParameter("email"));
         user.setPassword(request.getParameter("password"));
         return user;
     }
+
+
 
 }
