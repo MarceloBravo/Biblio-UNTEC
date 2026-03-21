@@ -13,9 +13,18 @@ import cdi.InjectionBeanCDI;
 import entities.Usuario;
 import interfaces.users.UserServiceInterface;
 
+/**
+ * Servlet que gestiona el registro de nuevos usuarios desde el formulario de registro público.
+ */
 @WebServlet("/register")
 public class UserRegisterServlet extends HttpServlet {private UserServiceInterface service;
 
+    /**
+     * Inicializa el servlet y sus dependencias.
+     * Inyecta la dependencia del servicio de usuarios.
+     *
+     * @throws ServletException si ocurre un error durante la inicialización.
+     */
     @Override
     public void init() throws ServletException {
         ServletConfig sc = this.getServletConfig();
@@ -23,6 +32,16 @@ public class UserRegisterServlet extends HttpServlet {private UserServiceInterfa
     }
 
 
+    /**
+     * Procesa las solicitudes POST para registrar un nuevo usuario.
+     * Recoge los datos del formulario, los guarda a través del servicio y redirige
+     * a la página de inicio con un mensaje de confirmación.
+     *
+     * @param request  el objeto {@link HttpServletRequest} que contiene la solicitud del cliente.
+     * @param response el objeto {@link HttpServletResponse} que contiene la respuesta del servlet.
+     * @throws ServletException si ocurre un error específico del servlet.
+     * @throws IOException si ocurre un error de entrada/salida.
+     */
     @Override
     public void doPost(
             HttpServletRequest request,
@@ -52,6 +71,12 @@ public class UserRegisterServlet extends HttpServlet {private UserServiceInterfa
     }
 
 
+    /**
+     * Extrae los parámetros de la solicitud HTTP y los mapea a un objeto {@link Usuario}.
+     *
+     * @param request el objeto {@link HttpServletRequest} del que se extraerán los parámetros.
+     * @return un objeto {@link Usuario} poblado con los datos de la solicitud.
+     */
     private Usuario getParams(HttpServletRequest request) {
         Usuario user = new Usuario();
         String id = request.getParameter("id");

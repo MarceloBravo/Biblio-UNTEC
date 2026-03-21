@@ -13,16 +13,36 @@ import cdi.InjectionBeanCDI;
 import dto.UserListDTO;
 import interfaces.users.UserServiceInterface;
 
+/**
+ * Servlet que gestiona la visualización de la lista de usuarios.
+ * Permite listar, buscar y paginar los usuarios del sistema.
+ */
 @WebServlet("/users")
 public class UserListServlet extends HttpServlet {
     private UserServiceInterface service;
 
+    /**
+     * Inicializa el servlet y sus dependencias.
+     * Inyecta la dependencia del servicio de usuarios.
+     *
+     * @throws ServletException si ocurre un error durante la inicialización.
+     */
     @Override
     public void init() throws ServletException {
         ServletConfig sc = this.getServletConfig();
         this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, UserServiceInterface.class);
     }
 
+    /**
+     * Procesa las solicitudes GET para mostrar la lista de usuarios.
+     * Gestiona la paginación y la búsqueda de usuarios. Obtiene los datos del servicio
+     * y los reenvía a la vista JSP para su visualización.
+     *
+     * @param request  el objeto {@link HttpServletRequest} que contiene la solicitud del cliente.
+     * @param response el objeto {@link HttpServletResponse} que contiene la respuesta del servlet.
+     * @throws ServletException si ocurre un error específico del servlet.
+     * @throws IOException si ocurre un error de entrada/salida.
+     */
     @Override
     public void doGet(
             HttpServletRequest request,
@@ -54,6 +74,15 @@ public class UserListServlet extends HttpServlet {
         request.getRequestDispatcher("/usuarios/usuariosList.jsp").forward(request, response);
     }
 
+    /**
+     * Redirige las solicitudes POST al método doGet.
+     * Esto permite que el servlet responda de la misma manera a ambos tipos de solicitudes.
+     *
+     * @param request  el objeto {@link HttpServletRequest} que contiene la solicitud del cliente.
+     * @param response el objeto {@link HttpServletResponse} que contiene la respuesta del servlet.
+     * @throws ServletException si ocurre un error específico del servlet.
+     * @throws IOException si ocurre un error de entrada/salida.
+     */
     @Override
     public void doPost(
         HttpServletRequest request,
@@ -63,6 +92,13 @@ public class UserListServlet extends HttpServlet {
         doGet(request, response);
     }
 
+    /**
+     * Transfiere los mensajes de notificación desde la sesión a los atributos de la solicitud.
+     * Después de transferirlos, los elimina de la sesión para evitar que se muestren en
+     * solicitudes posteriores.
+     *
+     * @param request el objeto {@link HttpServletRequest} donde se transferirán los mensajes.
+     */
     public void borrarMensajeDeSession(HttpServletRequest request) {
         if (request.getSession().getAttribute("message") != null) {
             request.setAttribute("message", request.getSession().getAttribute("message"));

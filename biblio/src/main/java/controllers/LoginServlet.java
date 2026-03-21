@@ -14,17 +14,39 @@ import entities.Usuario;
 import interfaces.auth.LoginServiceInterface;
 import cdi.InjectionBeanCDI;
 
+/**
+ * Servlet que gestiona la autenticación de usuarios.
+ * Procesa las solicitudes de inicio de sesión, valida las credenciales y gestiona la sesión del usuario.
+ */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     private LoginServiceInterface service;
 
+    /**
+     * Inicializa el servlet y sus dependencias.
+     * Este método es llamado por el contenedor de servlets una sola vez durante el ciclo de vida del servlet.
+     * Inyecta la dependencia del servicio de login.
+     * 
+     * @throws ServletException si ocurre un error durante la inicialización.
+     */
     @Override
     public void init() throws ServletException {
         ServletConfig sc = this.getServletConfig();
         this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, LoginServiceInterface.class);
     }
 
+    /**
+     * Procesa las solicitudes POST para la autenticación de usuarios.
+     * Extrae el email y la contraseña de la solicitud, los valida utilizando el servicio de login
+     * y redirige al usuario a la página de inicio si la autenticación es exitosa, o de vuelta al login
+     * en caso de fallo.
+     *
+     * @param request  el objeto {@link HttpServletRequest} que contiene la solicitud del cliente.
+     * @param response el objeto {@link HttpServletResponse} que contiene la respuesta del servlet.
+     * @throws ServletException si ocurre un error específico del servlet.
+     * @throws IOException si ocurre un error de entrada/salida.
+     */
     @Override
     protected void doPost(
             HttpServletRequest request,
