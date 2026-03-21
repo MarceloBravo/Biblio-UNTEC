@@ -13,6 +13,7 @@ D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\servi
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\services\UserService.java
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\dao\LoginDAO.java
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\dto\PaginationDTO.java
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\filters\AuthFilter.java
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\controllers\LoginServlet.java
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\controllers\users\UserSaveServlet.java
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java\utils\ConnectionMySql.java

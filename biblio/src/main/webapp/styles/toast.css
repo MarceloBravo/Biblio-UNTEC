@@ -1,0 +1,11 @@
+.toast-success{
+    background-color: rgb(152 247 141) !important;
+}
+
+.toast-danger{
+    background-color: rgb(255 1 1) !important;
+}
+
+.toast-info{
+    background-color: rgb(166 178 179) !important;
+}

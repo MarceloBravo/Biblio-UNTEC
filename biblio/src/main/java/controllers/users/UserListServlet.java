@@ -45,6 +45,8 @@ public class UserListServlet extends HttpServlet {
         result.getPagination().setUrl("users");
         result.getPagination().CalcularPaginas(desde, filas);
 
+        this.borrarMensajeDeSession(request);
+
         request.setAttribute("data", result.getData());
         request.setAttribute("pagination", result.getPagination());
         request.setAttribute("code", 200);
@@ -60,4 +62,16 @@ public class UserListServlet extends HttpServlet {
     {
         doGet(request, response);
     }
+
+    public void borrarMensajeDeSession(HttpServletRequest request) {
+        if (request.getSession().getAttribute("message") != null) {
+            request.setAttribute("message", request.getSession().getAttribute("message"));
+            request.getSession().removeAttribute("message");
+        }
+        if (request.getSession().getAttribute("code") != null) {
+            request.setAttribute("code", request.getSession().getAttribute("code"));
+            request.getSession().removeAttribute("code");
+        }
+    }
+    
 }

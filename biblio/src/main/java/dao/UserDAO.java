@@ -34,7 +34,7 @@ public class UserDAO implements UserDAOInterface {
         PaginationDTO pagDTO = new PaginationDTO();
         List<Usuario> data = new ArrayList<>();
         Integer totReg = this.getTotReg("", null);
-        String query = "Select id, nombre, apellidos, email from usuarios ORDER BY id ASC LIMIT ?, ?";
+        String query = "Select id, nombre, apellidos, email from usuarios ORDER BY id DESC LIMIT ?, ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -61,7 +61,7 @@ public class UserDAO implements UserDAOInterface {
         List<Usuario> data = new ArrayList<>();
         String where = "WHERE nombre Like ? OR apellidos Like ? OR email Like ?";
         Integer totReg = this.getTotReg(where, search);
-        String query = "Select id, nombre, apellidos, email from usuarios " + where + " ORDER BY id ASC LIMIT ?, ?";
+        String query = "Select id, nombre, apellidos, email from usuarios " + where + " ORDER BY id DESC LIMIT ?, ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -149,7 +149,7 @@ public class UserDAO implements UserDAOInterface {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return user;
+        return user.getId() != null ? user : null;
     }
 
     private Integer getNewId(PreparedStatement ps) throws Exception {
@@ -178,7 +178,7 @@ public class UserDAO implements UserDAOInterface {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return user;
+        return null;
     }
 
     @Override

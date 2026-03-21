@@ -30,13 +30,19 @@ public class UserSaveServlet extends HttpServlet {
     ) throws ServletException, IOException {
         try{
             Usuario user = this.getParams(request);
-            this.service.save(user);
+            String accion = (user.getId() != null ? "actualizado" : "creado");
 
+            Usuario result = this.service.save(user);
+            
+            request.getSession().setAttribute("message", result != null ? "Usuario " + accion + " con éxito" : "El usuario no pudo ser " + accion);
+            request.getSession().setAttribute("code", result != null ? 200 : 500);
+            request.getSession().setAttribute("data", result);
             response.sendRedirect(request.getContextPath() + "/users");
         } catch (Exception e) {
             System.out.println(e);
             request.setAttribute("message", "Ocurrió un error al registrar el usuario");
             request.setAttribute("code", 500);
+            request.setAttribute("data", null);
             request.getRequestDispatcher("index.jsp")
                     .forward(request, response);
         }

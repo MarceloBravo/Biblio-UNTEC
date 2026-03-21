@@ -8,17 +8,22 @@
         <link href="/styles/navbarHome.css" rel="stylesheet">
         <link href="/styles/users/usuariosList.css" rel="stylesheet">
         <link href="/styles/modal.css" rel="stylesheet">
+        <link href="/styles/toast.css" rel="stylesheet">
 
         <script src="/usuarios/usuarios.js"></script>
         <script src="/js/modal.js" type="module"></script>
+        <script src="/js/alert.js" type="module"></script>
+        <script src="/js/toast.js" type="module"></script>
+
     </head>
     <body>
         <%@include file="/fragments/navbarHome.jsp" %>
         <%@include file="/fragments/modal.jsp" %>
+        <%@include file="/fragments/toast.jsp" %>
         
         <div class="container">
-            <h3>Mantendor de usuarios</h3>
-
+            <h3>Mantenedor de usuarios</h3>
+            <%@include file="/fragments/alert.jsp" %>
             <form class="form-inline form-search">
                 <div class="form-group mb-2">
                     <a class="btn btn-primary mb-2" href="/users/nuevo">Nuevo usuario</a>
@@ -81,6 +86,5 @@
             </form>
             
         </div>
-
     </body>
 </body>
