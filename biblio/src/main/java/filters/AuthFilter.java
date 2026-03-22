@@ -8,12 +8,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Filtro de autenticación que intercepta todas las peticiones para verificar si el usuario está autenticado.
+ */
 @WebFilter("/*")
 public class AuthFilter implements Filter {
     
+    /**
+     * Inicializa el filtro.
+     *
+     * @param filterConfig la configuración del filtro
+     * @throws ServletException si ocurre un error en el servlet
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {}
     
+    /**
+     * Realiza el filtrado de la petición.
+     *
+     * @param request  la petición
+     * @param response la respuesta
+     * @param chain    la cadena de filtros
+     * @throws IOException      si ocurre un error de entrada/salida
+     * @throws ServletException si ocurre un error en el servlet
+     */
     @Override
     public void doFilter(
         ServletRequest request, 
@@ -46,6 +64,9 @@ public class AuthFilter implements Filter {
         }
     }
 
+    /**
+     * Destruye el filtro.
+     */
     @Override
     public void destroy() {}
 }
