@@ -1,4 +1,4 @@
-package interfaces.users;
+package interfaces.user;
 
 import dto.UserListDTO;
 import entities.Usuario;

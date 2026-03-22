@@ -1,4 +1,4 @@
-package controllers.users;
+package controllers.books;
 
 import java.io.IOException;
 
@@ -10,32 +10,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
-import dto.UserListDTO;
-import interfaces.user.UserServiceInterface;
+import dto.BookListDTO;
+import interfaces.user.BookServiceInterface;
 
 /**
- * Servlet que gestiona la visualización de la lista de usuarios.
- * Permite listar, buscar y paginar los usuarios del sistema.
+ * Servlet que gestiona la visualización de la lista de libros.
+ * Permite listar, buscar y paginar los libros del sistema.
  */
-@WebServlet("/users")
-public class UserListServlet extends HttpServlet {
-    private UserServiceInterface service;
+@WebServlet("/books")
+public class BookListServlet extends HttpServlet {
+    private BookServiceInterface service;
 
     /**
      * Inicializa el servlet y sus dependencias.
-     * Inyecta la dependencia del servicio de usuarios.
+     * Inyecta la dependencia del servicio de libros.
      *
      * @throws ServletException si ocurre un error durante la inicialización.
      */
     @Override
     public void init() throws ServletException {
         ServletConfig sc = this.getServletConfig();
-        this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, UserServiceInterface.class);
+        this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, BookServiceInterface.class);
     }
 
     /**
-     * Procesa las solicitudes GET para mostrar la lista de usuarios.
-     * Gestiona la paginación y la búsqueda de usuarios. Obtiene los datos del servicio
+     * Procesa las solicitudes GET para mostrar la lista de libros.
+     * Gestiona la paginación y la búsqueda de libros. Obtiene los datos del servicio
      * y los reenvía a la vista JSP para su visualización.
      *
      * @param request  el objeto {@link HttpServletRequest} que contiene la solicitud del cliente.
@@ -55,14 +55,14 @@ public class UserListServlet extends HttpServlet {
         Integer desde = Integer.parseInt((strDesde != null ? strDesde : "0"));
         Integer filas = Integer.parseInt(strFilas != null ? strFilas : "10");
         
-        UserListDTO result = null;
+        BookListDTO result = null;
         if(search != null && !search.isEmpty()){
             result = this.service.list(desde,filas, search);
         }else{
             result = this.service.list(desde,filas);
         }
 
-        result.getPagination().setUrl("users");
+        result.getPagination().setUrl("books");
         result.getPagination().CalcularPaginas(desde, filas);
 
         this.borrarMensajeDeSession(request);
@@ -71,7 +71,7 @@ public class UserListServlet extends HttpServlet {
         request.setAttribute("pagination", result.getPagination());
         request.setAttribute("code", 200);
         request.setAttribute("search", search);
-        request.getRequestDispatcher("/usuarios/usuariosList.jsp").forward(request, response);
+        request.getRequestDispatcher("/libros/librosList.jsp").forward(request, response);
     }
 
     /**

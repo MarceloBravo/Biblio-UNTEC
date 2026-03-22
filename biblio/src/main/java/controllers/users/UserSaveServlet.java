@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import entities.Usuario;
-import interfaces.users.UserServiceInterface;
+import interfaces.user.UserServiceInterface;
 
 /**
  * Servlet responsable de guardar (crear o actualizar) usuarios desde el mantenedor de usuarios.
@@ -63,7 +63,7 @@ public class UserSaveServlet extends HttpServlet {
             request.setAttribute("message", "Ocurrió un error al registrar el usuario");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);
-            request.getRequestDispatcher("index.jsp")
+            request.getRequestDispatcher("/users")
                     .forward(request, response);
         }
     }

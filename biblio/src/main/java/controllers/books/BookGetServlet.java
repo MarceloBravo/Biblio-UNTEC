@@ -1,39 +1,39 @@
-package controllers.users;
+package controllers.books;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 import cdi.InjectionBeanCDI;
-import entities.Usuario;
-import interfaces.user.UserServiceInterface;
+import entities.Libro;
+import interfaces.user.BookServiceInterface;
 
 /**
- * Servlet para obtener los datos de un usuario específico.
- * Se utiliza para mostrar los detalles de un usuario en un formulario para su visualización o edición.
- * Extiende {@link UserSaveServlet} para reutilizar parte de su funcionalidad.
+ * Servlet para obtener los datos de un libro específico.
+ * Se utiliza para mostrar los detalles de un libro en un formulario para su visualización o edición.
+ * Extiende {@link BookSaveServlet} para reutilizar parte de su funcionalidad.
  */
-@WebServlet("/users/ver/*")
-public class UserGetServlet extends UserSaveServlet{
-    private UserServiceInterface service;
+@WebServlet("/books/ver/*")
+public class BookGetServlet extends BookSaveServlet{
+    private BookServiceInterface service;
 
     /**
      * Inicializa el servlet y sus dependencias.
-     * Inyecta la dependencia del servicio de usuarios.
+     * Inyecta la dependencia del servicio de libros.
      *
      * @throws ServletException si ocurre un error durante la inicialización.
      */
     @Override
     public void init() throws ServletException {
         ServletConfig sc = this.getServletConfig();
-        this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, UserServiceInterface.class);
+        this.service = (new InjectionBeanCDI()).getInitBeanCDI(sc, BookServiceInterface.class);
     }
 
 
     /**
-     * Procesa las solicitudes GET para obtener un usuario por su ID.
-     * El ID del usuario se extrae de la ruta de la URL. Busca al usuario a través del servicio
-     * y lo adjunta como un atributo en la solicitud antes de reenviarla al formulario de usuarios.
+     * Procesa las solicitudes GET para obtener un libros por su ID.
+     * El ID del libro se extrae de la ruta de la URL. Busca al libro a través del servicio
+     * y lo adjunta como un atributo en la solicitud antes de reenviarla al formulario de libros.
      *
      * @param request  el objeto {@link javax.servlet.http.HttpServletRequest} que contiene la solicitud del cliente.
      * @param response el objeto {@link javax.servlet.http.HttpServletResponse} que contiene la respuesta del servlet.
@@ -49,16 +49,16 @@ public class UserGetServlet extends UserSaveServlet{
             String pathInfo = request.getPathInfo();
             String id = pathInfo.substring(1);
 
-            Usuario user = id != null ? this.service.getById(Integer.parseInt(id)) : null;
+            Libro user = id != null ? this.service.getById(Integer.parseInt(id)) : null;
 
-            request.setAttribute("usuario", user);
+            request.setAttribute("libro", user);
             request.setAttribute("code", user != null ? 200 : 404);
-            request.getRequestDispatcher("/usuarios/usuariosForm.jsp").forward(request, response);
+            request.getRequestDispatcher("/libros/librosForm.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println(e);
-            request.setAttribute("message", "Ocurrió un error al obtener el usuario");
+            request.setAttribute("message", "Ocurrió un error al obtener el libro");
             request.setAttribute("code", 500);
-            request.getRequestDispatcher("/usuarios/usuariosList.jsp");
+            request.getRequestDispatcher("/libros/librosForm.jsp");
         }
     }
 }

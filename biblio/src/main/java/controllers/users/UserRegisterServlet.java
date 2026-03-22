@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import entities.Usuario;
-import interfaces.users.UserServiceInterface;
+import interfaces.user.UserServiceInterface;
 
 /**
  * Servlet que gestiona el registro de nuevos usuarios desde el formulario de registro público.
@@ -65,7 +65,7 @@ public class UserRegisterServlet extends HttpServlet {private UserServiceInterfa
             request.setAttribute("message", "Ocurrió un error al registrar el usuario");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);
-            request.getRequestDispatcher("index.jsp")
+            request.getRequestDispatcher("/usuarios/usuariosList.jsp")
                     .forward(request, response);
         }
     }
