@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import entities.Usuario;
-import interfaces.user.UserServiceInterface;
+import interfaces.Services.UserServiceInterface;
 
 /**
  * Servlet que gestiona el registro de nuevos usuarios desde el formulario de registro público.

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import entities.Usuario;
-import interfaces.user.UserServiceInterface;
+import interfaces.Services.UserServiceInterface;
 
 /**
  * Servlet responsable de guardar (crear o actualizar) usuarios desde el mantenedor de usuarios.

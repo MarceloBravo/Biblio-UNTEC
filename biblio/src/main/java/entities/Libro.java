@@ -19,6 +19,18 @@ public class Libro {
     public Libro(){
     }
 
+    public Libro(Integer id, String isbn, String nombre, String editorial, String autor, String resumen, Date fecha_publicacion, String idioma, int edicion) {
+        this.id = id;
+        this.isbn = isbn;
+        this.nombre = nombre;
+        this.editorial = editorial;
+        this.autor = autor;
+        this.resumen = resumen;
+        this.fecha_publicacion = fecha_publicacion;
+        this.idioma = idioma;
+        this.edicion = edicion;
+    }
+    
     public Libro(Integer id, String isbn, String nombre, String editorial, String autor, String resumen, Date fecha_publicacion, String idioma, int edicion, Date created_at, Date updated_at) {
         this.id = id;
         this.isbn = isbn;

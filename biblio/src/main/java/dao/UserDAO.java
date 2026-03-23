@@ -255,8 +255,8 @@ public class UserDAO implements UserDAOInterface {
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
             ps.setInt(1, user.getId());
-            ps.executeUpdate();
-            return true;
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
         }catch(Exception e){
             System.out.println(e);
             return false;

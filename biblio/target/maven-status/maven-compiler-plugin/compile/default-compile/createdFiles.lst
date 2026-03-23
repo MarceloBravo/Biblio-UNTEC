@@ -2,8 +2,6 @@ controllers\users\UserListServlet.class
 interfaces\dao\UserDAOInterface.class
 filters\AuthFilter.class
 controllers\users\UserNuewServlet.class
-interfaces\book\BookServiceInterface.class
-interfaces\user\UserServiceInterface.class
 interfaces\dao\BookDAOInterface.class
 entities\Libro.class
 controllers\books\BookListServlet.class
@@ -15,7 +13,6 @@ controllers\books\BookGetServlet.class
 dao\LibroDAO.class
 controllers\users\UserDeleteServlet.class
 controllers\users\UserRegisterServlet.class
-interfaces\auth\LoginServiceInterface.class
 services\UserService.class
 dao\LoginDAO.class
 cdi\InjectionBeanCDI.class

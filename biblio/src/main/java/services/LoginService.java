@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import interfaces.auth.LoginServiceInterface;
+import interfaces.Services.LoginServiceInterface;
 import interfaces.dao.LoginDAOInterface;
 import entities.Usuario;
 

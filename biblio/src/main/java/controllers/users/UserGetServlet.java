@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 
 import cdi.InjectionBeanCDI;
 import entities.Usuario;
-import interfaces.user.UserServiceInterface;
+import interfaces.Services.UserServiceInterface;
 
 /**
  * Servlet para obtener los datos de un usuario específico.

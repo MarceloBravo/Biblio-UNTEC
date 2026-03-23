@@ -5,7 +5,7 @@ import javax.inject.Inject;
 
 import dto.BookListDTO;
 import entities.Libro;
-import interfaces.book.BookServiceInterface;
+import interfaces.Services.BookServiceInterface;
 import interfaces.dao.BookDAOInterface;
 
 @ApplicationScoped

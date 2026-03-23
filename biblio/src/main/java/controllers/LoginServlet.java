@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entities.Usuario;
-import interfaces.auth.LoginServiceInterface;
+import interfaces.Services.LoginServiceInterface;
 import cdi.InjectionBeanCDI;
 
 /**

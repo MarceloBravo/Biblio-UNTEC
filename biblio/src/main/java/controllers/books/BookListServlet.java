@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import dto.BookListDTO;
-import interfaces.book.BookServiceInterface;
+import interfaces.Services.BookServiceInterface;
 
 /**
  * Servlet que gestiona la visualización de la lista de libros.

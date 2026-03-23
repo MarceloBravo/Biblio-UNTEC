@@ -5,8 +5,8 @@ import javax.inject.Inject;
 
 import dto.UserListDTO;
 import entities.Usuario;
+import interfaces.Services.UserServiceInterface;
 import interfaces.dao.UserDAOInterface;
-import interfaces.user.UserServiceInterface;
 import interfaces.utils.StringUtilsInterface;
 
 /**

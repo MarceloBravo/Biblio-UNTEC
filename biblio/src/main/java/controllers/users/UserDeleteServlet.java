@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
-import interfaces.user.UserServiceInterface;
+import interfaces.Services.UserServiceInterface;
 
 /**
  * Servlet encargado de gestionar la eliminación de usuarios.

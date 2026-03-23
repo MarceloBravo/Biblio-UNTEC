@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import entities.Libro;
-import interfaces.book.BookServiceInterface;
+import interfaces.Services.BookServiceInterface;
 
 /**
  * Servlet responsable de guardar (crear o actualizar) libros desde el mantenedor de libros.

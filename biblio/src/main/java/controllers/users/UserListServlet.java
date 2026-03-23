@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import dto.UserListDTO;
-import interfaces.user.UserServiceInterface;
+import interfaces.Services.UserServiceInterface;
 
 /**
  * Servlet que gestiona la visualización de la lista de usuarios.
