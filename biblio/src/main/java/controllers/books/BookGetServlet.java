@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 
 import cdi.InjectionBeanCDI;
 import entities.Libro;
-import interfaces.user.BookServiceInterface;
+import interfaces.book.BookServiceInterface;
 
 /**
  * Servlet para obtener los datos de un libro específico.

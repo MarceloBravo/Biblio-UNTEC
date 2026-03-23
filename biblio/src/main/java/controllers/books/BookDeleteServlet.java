@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
-import interfaces.user.BookServiceInterface;
+import interfaces.book.BookServiceInterface;
 
 /**
  * Servlet encargado de gestionar la eliminación de libros.

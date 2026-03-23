@@ -1,4 +1,4 @@
-package interfaces.user;
+package interfaces.book;
 
 import dto.BookListDTO;
 import entities.Libro;

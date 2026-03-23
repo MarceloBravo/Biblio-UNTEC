@@ -8,22 +8,23 @@ import java.util.List;
 import java.sql.Statement;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import dto.BookListDTO;
 import dto.PaginationDTO;
 import entities.Libro;
-import interfaces.book.BookDAOInterface;
 import interfaces.utils.ConnectionMySqlInterface;
 
 @ApplicationScoped
-public class LibroDAO implements BookDAOInterface{
+public class LibroDAO implements interfaces.dao.BookDAOInterface{
     private ConnectionMySqlInterface connectionMySql;
-
-    public LibroDAO(ConnectionMySqlInterface connectionMySql) {
-        this.connectionMySql = connectionMySql;
+    
+    public LibroDAO(){
     }
 
-    public LibroDAO(){
+    @Inject
+    public LibroDAO(ConnectionMySqlInterface connectionMySql) {
+        this.connectionMySql = connectionMySql;
     }
 
     @Override
@@ -57,17 +58,25 @@ public class LibroDAO implements BookDAOInterface{
         BookListDTO result = new BookListDTO();
         PaginationDTO pagDTO = new PaginationDTO();
         List<Libro> data = new ArrayList<>();
-        String where = "WHERE nombre Like ? OR apellidos Like ? OR email Like ?";
+        String where = "WHERE id LIKE ? OR isbn LIKE ? OR nombre LIKE ? OR editorial LIKE ? OR autor LIKE ? OR resumen LIKE ? OR fecha_publicacion LIKE ? OR idioma LIKE ? OR edicion LIKE ? OR created_at LIKE ? OR updated_at LIKE ?";
         Integer totReg = this.getTotReg(where, search);
-        String query = "Select id, nombre, apellidos, email from usuarios " + where + " ORDER BY id DESC LIMIT ?, ?";
+        String query = "Select id, isbn, nombre, editorial, autor, resumen, fecha_publicacion, idioma, edicion, created_at, updated_at from libros " + where + " ORDER BY id DESC LIMIT ?, ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
             ps.setString(1, "%" + search + "%");
             ps.setString(2, "%" + search + "%");
             ps.setString(3, "%" + search + "%");
-            ps.setInt(4, desde);
-            ps.setInt(5, filas);
+            ps.setString(4, "%" + search + "%");
+            ps.setString(5, "%" + search + "%");
+            ps.setString(6, "%" + search + "%");
+            ps.setString(7, "%" + search + "%");
+            ps.setString(8, "%" + search + "%");
+            ps.setString(9, "%" + search + "%");
+            ps.setString(10, "%" + search + "%");
+            ps.setString(11, "%" + search + "%");
+            ps.setInt(12, desde);
+            ps.setInt(13, filas);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Libro book = new Libro(rs.getInt("id"), rs.getString("isbn"), rs.getString("nombre"), rs.getString("editorial"), rs.getString("autor"), rs.getString("resumen"), rs.getDate("fecha_publicacion"), rs.getString("idioma"), rs.getInt("edicion"), rs.getDate("created_at"), rs.getDate("updated_at"));
@@ -114,7 +123,18 @@ public class LibroDAO implements BookDAOInterface{
 
     @Override
     public Libro create(Libro book){
-       String query = "INSERT INTO libros (isbn, nombre, editorial, autor, resumen, fecha_publicacion, idioma, edicion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO libros (isbn, nombre, editorial, autor, resumen, fecha_publicacion, idioma, edicion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        System.out.println("*********************");
+        System.out.println(query);
+        System.out.println(book.getIsbn());
+        System.out.println(book.getNombre());
+        System.out.println(book.getEditorial());
+        System.out.println(book.getAutor());
+        System.out.println(book.getResumen());
+        System.out.println(book.getFechaPublicacion());
+        System.out.println(book.getIdioma());
+        System.out.println(book.getEdicion());
+        System.out.println("*********************");
         try {
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -143,14 +163,15 @@ public class LibroDAO implements BookDAOInterface{
         try {           
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, book.getNombre());
-            ps.setString(2, book.getEditorial());
-            ps.setString(3, book.getAutor());
-            ps.setString(4, book.getResumen());
-            ps.setDate(5, book.getFechaPublicacion());
-            ps.setString(6, book.getIdioma());
-            ps.setInt(7, book.getEdicion());
-            ps.setInt(8, book.getId());
+            ps.setString(1, book.getIsbn());
+            ps.setString(2, book.getNombre());
+            ps.setString(3, book.getEditorial());
+            ps.setString(4, book.getAutor());
+            ps.setString(5, book.getResumen());
+            ps.setDate(6, book.getFechaPublicacion());
+            ps.setString(7, book.getIdioma());
+            ps.setInt(8, book.getEdicion());
+            ps.setInt(9, book.getId());
             int affectedRows = ps.executeUpdate();
             return affectedRows > 0 ? book : null;
 
@@ -200,7 +221,8 @@ public class LibroDAO implements BookDAOInterface{
      * @return el número total de registros
      */
     private Integer getTotReg(String where, String search){
-        String query = "SELECT COUNT(*) FROM usuarios " + where;
+        String query = "SELECT COUNT(*) FROM libros " + where;
+        System.out.println(query);
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -208,6 +230,14 @@ public class LibroDAO implements BookDAOInterface{
                 ps.setString(1, "%" + search + "%");
                 ps.setString(2, "%" + search + "%");
                 ps.setString(3, "%" + search + "%");
+                ps.setString(4, "%" + search + "%");
+                ps.setString(5, "%" + search + "%");
+                ps.setString(6, "%" + search + "%");
+                ps.setString(7, "%" + search + "%");
+                ps.setString(8, "%" + search + "%");
+                ps.setString(9, "%" + search + "%");
+                ps.setString(10, "%" + search + "%");
+                ps.setString(11, "%" + search + "%");
             }
             ResultSet rs = ps.executeQuery();
             if(rs.next()){

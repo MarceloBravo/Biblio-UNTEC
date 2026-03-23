@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cdi.InjectionBeanCDI;
 import entities.Libro;
-import interfaces.user.BookServiceInterface;
+import interfaces.book.BookServiceInterface;
 
 /**
  * Servlet responsable de guardar (crear o actualizar) libros desde el mantenedor de libros.
@@ -51,7 +51,7 @@ public class BookSaveServlet extends HttpServlet {
         try{
             Libro book = this.getParams(request);
             String accion = (book.getId() != null ? "actualizado" : "creado");
-
+            
             Libro result = this.service.save(book);
             
             request.getSession().setAttribute("message", result != null ? "libro " + accion + " con éxito" : "El libro no pudo ser " + accion);
@@ -75,21 +75,47 @@ public class BookSaveServlet extends HttpServlet {
      * @return un objeto {@link libro} poblado con los datos de la solicitud.
      */
     private Libro getParams(HttpServletRequest request) {
-        Libro user = new Libro();
+        Libro book = new Libro();
         String id = request.getParameter("id");
         if(id != null && !id.isEmpty()){
-            user.setId(Integer.parseInt(id));
+            book.setId(Integer.parseInt(id));
         }
-        user.setIsbn(request.getParameter("isbn"));
-        user.setNombre(request.getParameter("nombre"));
-        user.setEditorial(request.getParameter("editorial"));
-        user.setAutor(request.getParameter("autor"));
-        user.setResumen(request.getParameter("resumen"));
-        user.setFechaPublicacion(java.sql.Date.valueOf(request.getParameter("fecha_publicacion")));
-        user.setIdioma(request.getParameter("idioma"));
-        user.setEdicion(Integer.parseInt(request.getParameter("edicion")));
+        System.out.println("**GRABANDO LIBRO");
+        book.setIsbn(request.getParameter("isbn"));
+        System.out.println("**AAAAA");
+        book.setNombre(request.getParameter("nombre"));
+        System.out.println("**BBBBB");
+        book.setEditorial(request.getParameter("editorial"));
+        System.out.println("**CCCCC");
+        book.setAutor(request.getParameter("autor"));
+        System.out.println("**DDDDD");
+        book.setResumen(request.getParameter("resumen"));
+        System.out.println("**EEEEE");
+
+        String fechaStr = request.getParameter("fechaPublicacion");
+
+        System.out.println(fechaStr);
+        if (fechaStr != null && !fechaStr.isEmpty()) {
+            System.out.println("*************");
+            try {
+                book.setFechaPublicacion(java.sql.Date.valueOf(fechaStr));
+            } catch (IllegalArgumentException e) {
+                System.out.println("-----------ERROR--------------");
+                book.setFechaPublicacion(null); 
+                System.out.println("Formato de fecha inválido: " + fechaStr);
+            }
+        } else {
+            System.out.println("-----------NULO--------------");
+            // Maneja el caso de fecha nula o vacía
+            book.setFechaPublicacion(null); 
+        }
+
+        System.out.println("**FFFFF");
+        book.setIdioma(request.getParameter("idioma"));
+        System.out.println("**GGGGGG");
+        book.setEdicion(Integer.parseInt(request.getParameter("edicion")));        
         
-        return user;
+        return book;
     }
 
 }

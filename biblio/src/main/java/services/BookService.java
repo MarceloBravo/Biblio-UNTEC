@@ -1,11 +1,12 @@
 package services;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import dto.BookListDTO;
 import entities.Libro;
-import interfaces.book.BookDAOInterface;
-import interfaces.user.BookServiceInterface;
+import interfaces.book.BookServiceInterface;
+import interfaces.dao.BookDAOInterface;
 
 @ApplicationScoped
 public class BookService implements BookServiceInterface {
@@ -13,6 +14,7 @@ public class BookService implements BookServiceInterface {
 
     public BookService(){}
 
+    @Inject
     public BookService(
         BookDAOInterface dao
     ){

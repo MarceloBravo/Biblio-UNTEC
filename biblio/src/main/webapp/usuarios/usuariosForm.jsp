@@ -8,6 +8,7 @@
         <link href="/styles/navbarHome.css" rel="stylesheet">
         <link href="/styles/users/usuariosList.css" rel="stylesheet">
         <link href="/styles/modal.css" rel="stylesheet">
+        <link href="/styles/users/usuariosForm.css" rel="stylesheet">
 
         <script src="/usuarios/usuarios.js"></script>
         <script src="/js/modal.js" type="module"></script>
@@ -22,7 +23,6 @@
             <form id="userForm" action="/users/grabar" method="post">
                 <input type="hidden" name="id" value="<c:out value='${usuario.id}'/>"/>
                 <input type="hidden" name="accion" value="crud" />
-                <span><c:out value='${usuario.id}'/>
                 <div class="form-group row">
                     <label for="input-nombre" class="col-sm-2 col-form-label">Nombre</label>
                     <div class="col-sm-10">
@@ -34,6 +34,7 @@
                         value="<c:out value='${usuario.nombre}'/>"
                         placeholder="Nombre(s)"
                         maxlength="50"
+                        required
                     />
                     </div>
                 </div>
@@ -48,6 +49,7 @@
                         value="<c:out value='${usuario.apellidos}'/>"
                         placeholder="Apellidos"
                         maxlength="50"
+                        required
                     />
                     </div>
                 </div>
@@ -55,13 +57,14 @@
                     <label for="input-email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                     <input 
-                        type="text" 
+                        type="email" 
                         class="form-control" 
                         id="input-email" 
                         name="email" 
                         value="<c:out value='${usuario.email}'/>"
                         placeholder="email@ejemplo.cl"
                         maxlength="255"
+                        required
                     />
                     </div>
                 </div>
@@ -101,7 +104,11 @@
 
                 <button 
                     type="button" 
-                    class="btn btn-danger" 
+                    class="btn btn-danger 
+                        <c:if test='${usuario.id == null}'>
+                            btn-disabled
+                        </c:if>
+                    " 
                     onclick="showModal(
                         'delete-form',
                         '${usuario.id}',
@@ -109,6 +116,11 @@
                         '¿Desea eliminar el registro?',
                         'Eliminar'
                     );"
+                    
+                    <c:if test="${usuario.id == null}">
+                        disabled
+                    </c:if>
+
                 >
                     Eliminar
                 </button>
