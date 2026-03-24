@@ -11,14 +11,26 @@ import entities.Usuario;
 import interfaces.Services.LoanServiceInterface;
 import interfaces.dao.LoanDAOInterface;
 
+/**
+ * Servicio para la gestión de préstamos.
+ */
 public class LoanService implements LoanServiceInterface {
     private LoanDAOInterface dao;
     private UserService userService;
     private BookService bookService;
 
 
+    /**
+     * Constructor por defecto.
+     */
     public LoanService(){}
 
+    /**
+     * Constructor con inyección de dependencias.
+     * @param dao el DAO de préstamos
+     * @param userService el servicio de usuarios
+     * @param bookService el servicio de libros
+     */
     @Inject
     public LoanService(
         LoanDAOInterface dao,
@@ -31,21 +43,47 @@ public class LoanService implements LoanServiceInterface {
     }
 
 
+    /**
+     * Obtiene una lista paginada de prestamos.
+     * @param desde el índice del primer elemento a devolver
+     * @param filas el número de elementos a devolver
+     * @return el DTO de la lista de prestamos
+     */
     @Override
     public PrestamoDTO list(Integer desde, Integer filas) {
         return this.dao.list(desde, filas);
     }
 
+    /**
+     * Obtiene una lista paginada de prestamos que coinciden con un criterio de búsqueda.
+     * @param desde el índice del primer elemento a devolver
+     * @param filas el número de elementos a devolver
+     * @param search el criterio de búsqueda
+     * @return el DTO de la lista de prestamos
+     */
     @Override
     public PrestamoDTO list(Integer desde, Integer filas, String search) {
         return this.dao.list(desde, filas, search);
     }
 
+    /**
+     * Obtiene un prestamo por su ID.
+     * @param id el ID del prestamo
+     * @return el prestamo correspondiente al ID proporcionado
+     */
     @Override
     public Prestamo getById(Integer id) {
         return this.dao.getById(id);
     }
 
+    /**
+     * Crea un nuevo prestamo.
+     * @param userId el ID del usuario
+     * @param bookId el ID del libro
+     * @param fechaPrestamo la fecha de préstamo
+     * @param fechaDevolucion la fecha de devolución
+     * @return el prestamo creado   
+     */
     @Override
     public Prestamo create(Integer userId, Integer bookId, Date fechaPrestamo, Date fechaDevolucion) throws Exception {
         Libro book = this.bookService.getById(bookId);
@@ -65,6 +103,11 @@ public class LoanService implements LoanServiceInterface {
     }
 
 
+    /**
+     * Actualiza un prestamo existente.
+     * @param prestamo el prestamo a actualizar
+     * @return el prestamo actualizado
+     */
     @Override
     public Prestamo update(Prestamo prestamo) throws Exception {
         Prestamo prestamoFound = this.dao.getById(prestamo.getId());
@@ -82,6 +125,11 @@ public class LoanService implements LoanServiceInterface {
         return this.dao.update(prestamo);
     }
 
+    /**
+     * Elimina un prestamo por su ID.
+     * @param id el ID del prestamo a eliminar
+     * @return true si se eliminó correctamente, false en caso contrario
+     */
     @Override
     public boolean delete(Integer id) {
         return this.dao.delete(id);
