@@ -124,17 +124,6 @@ public class LibroDAO implements interfaces.dao.BookDAOInterface{
     @Override
     public Libro create(Libro book){
         String query = "INSERT INTO libros (isbn, nombre, editorial, autor, resumen, fecha_publicacion, idioma, edicion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        System.out.println("*********************");
-        System.out.println(query);
-        System.out.println(book.getIsbn());
-        System.out.println(book.getNombre());
-        System.out.println(book.getEditorial());
-        System.out.println(book.getAutor());
-        System.out.println(book.getResumen());
-        System.out.println(book.getFechaPublicacion());
-        System.out.println(book.getIdioma());
-        System.out.println(book.getEdicion());
-        System.out.println("*********************");
         try {
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -222,7 +211,6 @@ public class LibroDAO implements interfaces.dao.BookDAOInterface{
      */
     private Integer getTotReg(String where, String search){
         String query = "SELECT COUNT(*) FROM libros " + where;
-        System.out.println(query);
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);

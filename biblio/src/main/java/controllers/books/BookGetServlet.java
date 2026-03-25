@@ -3,6 +3,7 @@ package controllers.books;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 import cdi.InjectionBeanCDI;
 import entities.Libro;
@@ -14,7 +15,7 @@ import interfaces.Services.BookServiceInterface;
  * Extiende {@link BookSaveServlet} para reutilizar parte de su funcionalidad.
  */
 @WebServlet("/books/ver/*")
-public class BookGetServlet extends BookSaveServlet{
+public class BookGetServlet extends HttpServlet{
     private BookServiceInterface service;
 
     /**

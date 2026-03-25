@@ -2,7 +2,7 @@ package interfaces.Services;
 
 import java.sql.Date;
 
-import dto.PrestamoDTO;
+import dto.LoanListDTO;
 import entities.Prestamo;
 
 /**
@@ -16,7 +16,7 @@ public interface LoanServiceInterface {
      * @param filas el número de filas a devolver
      * @return un objeto PrestamoDTO con la lista de préstamos y la información de paginación
      */
-    public PrestamoDTO list(Integer desde, Integer filas);
+    public LoanListDTO list(Integer desde, Integer filas);
 
     /**
      * Lista los préstamos con paginación y búsqueda.
@@ -25,7 +25,7 @@ public interface LoanServiceInterface {
      * @param search el término de búsqueda
      * @return un objeto PrestamoDTO con la lista de préstamos y la información de paginación
      */
-    public PrestamoDTO list(Integer desde, Integer filas, String search);
+    public LoanListDTO list(Integer desde, Integer filas, String search);
 
     /**
      * Obtiene un préstamo por su ID.
@@ -51,7 +51,7 @@ public interface LoanServiceInterface {
      * @return el préstamo actualizado
      * @throws Exception si ocurre un error durante la operación
      */
-    public Prestamo update(Prestamo prestamo) throws Exception;
+    public Prestamo update(Integer id, Integer userId, Integer bookId, Date fechaPrestamo, Date fechaDevolucion, Date fechaRetorno) throws Exception;
 
     /**
      * Elimina un préstamo por su ID.

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import javax.inject.Inject;
 
-import dto.PrestamoDTO;
+import dto.LoanListDTO;
 import entities.Libro;
 import entities.Prestamo;
 import entities.Usuario;
@@ -50,7 +50,7 @@ public class LoanService implements LoanServiceInterface {
      * @return el DTO de la lista de prestamos
      */
     @Override
-    public PrestamoDTO list(Integer desde, Integer filas) {
+    public LoanListDTO list(Integer desde, Integer filas) {
         return this.dao.list(desde, filas);
     }
 
@@ -62,7 +62,7 @@ public class LoanService implements LoanServiceInterface {
      * @return el DTO de la lista de prestamos
      */
     @Override
-    public PrestamoDTO list(Integer desde, Integer filas, String search) {
+    public LoanListDTO list(Integer desde, Integer filas, String search) {
         return this.dao.list(desde, filas, search);
     }
 
@@ -95,10 +95,12 @@ public class LoanService implements LoanServiceInterface {
             throw new RuntimeException("El usuario no existe");
         }
         Prestamo prestamo = new Prestamo();
+        
         prestamo.setLibro(book);
         prestamo.setUsuario(user);
         prestamo.setFechaPrestamo(fechaPrestamo);
         prestamo.setFechaDevolucion(fechaDevolucion);
+        
         return this.dao.create(prestamo);
     }
 
@@ -109,19 +111,26 @@ public class LoanService implements LoanServiceInterface {
      * @return el prestamo actualizado
      */
     @Override
-    public Prestamo update(Prestamo prestamo) throws Exception {
-        Prestamo prestamoFound = this.dao.getById(prestamo.getId());
+    public Prestamo update(Integer id, Integer userId, Integer bookId, Date fechaPrestamo, Date fechaDevolucion, Date fechaRetorno) throws Exception {        
+        Prestamo prestamoFound = this.dao.getById(id);
         if(prestamoFound == null){
             throw new RuntimeException("El prestamo no existe");
         }
-        Libro book = this.bookService.getById(prestamo.getLibro().getId());
+        Libro book = this.bookService.getById(bookId);
         if(book == null){
             throw new RuntimeException("El libro no existe");
         }
-        Usuario user = this.userService.getById(prestamo.getUsuario().getId());
+        Usuario user = this.userService.getById(userId);
         if(user == null){
             throw new RuntimeException("El usuario no existe");
         }
+        Prestamo prestamo = new Prestamo();
+        prestamo.setId(id);
+        prestamo.setLibro(book);
+        prestamo.setUsuario(user);
+        prestamo.setFechaPrestamo(fechaPrestamo);
+        prestamo.setFechaDevolucion(fechaDevolucion);
+        prestamo.setFechaRetorno(fechaRetorno);
         return this.dao.update(prestamo);
     }
 

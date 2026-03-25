@@ -8,7 +8,7 @@ import entities.Prestamo;
 /**
  * Objeto de Transferencia de Datos para Préstamos.
  */
-public class PrestamoDTO {
+public class LoanListDTO {
     
     private List<Prestamo> data = new ArrayList<>();
     private PaginationDTO pagination = new PaginationDTO();
@@ -16,14 +16,14 @@ public class PrestamoDTO {
     /**
      * Constructor por defecto.
      */
-    public PrestamoDTO() {
+    public LoanListDTO() {
     }
 
     /**
      * Constructor con datos.
      * @param data los datos
      */
-    public PrestamoDTO(List<Prestamo> data) {
+    public LoanListDTO(List<Prestamo> data) {
         this.data = data;
     }
 
@@ -32,7 +32,7 @@ public class PrestamoDTO {
      * @param data los datos
      * @param pagination la paginación
      */
-    public PrestamoDTO(List<Prestamo> data, PaginationDTO pagination) {
+    public LoanListDTO(List<Prestamo> data, PaginationDTO pagination) {
         this.data = data;
         this.pagination = pagination;
     }

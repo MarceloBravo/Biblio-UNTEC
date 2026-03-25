@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import cdi.InjectionBeanCDI;
 import dto.BookListDTO;
 import interfaces.Services.BookServiceInterface;
@@ -49,29 +51,50 @@ public class BookListServlet extends HttpServlet {
             HttpServletResponse response
     ) throws ServletException, IOException
     { 
-        String search = request.getParameter("search");
-        String strDesde = request.getParameter("desde");
-        String strFilas = request.getParameter("filas");
-        Integer desde = Integer.parseInt((strDesde != null ? strDesde : "0"));
-        Integer filas = Integer.parseInt(strFilas != null ? strFilas : "10");
-        
-        BookListDTO result = null;
-        if(search != null && !search.isEmpty()){
-            result = this.service.list(desde,filas, search);
-        }else{
-            result = this.service.list(desde,filas);
+        try{
+            String format = request.getParameter("format");
+
+            String search = request.getParameter("search");
+            String strDesde = request.getParameter("desde");
+            String strFilas = request.getParameter("filas");
+            Integer desde = Integer.parseInt((strDesde != null ? strDesde : "0"));
+            Integer filas = Integer.parseInt(strFilas != null ? strFilas : "10");
+            
+            BookListDTO result = null;
+            if(search != null && !search.isEmpty()){
+                result = this.service.list(desde,filas, search);
+            }else{
+                result = this.service.list(desde,filas);
+            }
+
+            result.getPagination().setUrl("books");
+            result.getPagination().CalcularPaginas(desde, filas);
+
+            this.borrarMensajeDeSession(request);
+
+            if("json".equals(format)){
+                // Convertir la lista a JSON (puedes usar la librería Gson o Jackson)
+                String json = new Gson().toJson(result.getData());
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(json);
+            }else{
+                request.setAttribute("data", result.getData());
+                request.setAttribute("pagination", result.getPagination());
+                request.setAttribute("code", 200);
+                request.setAttribute("search", search);
+                request.getRequestDispatcher("/libros/librosList.jsp").forward(request, response);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            BookListDTO result = new BookListDTO();
+            request.setAttribute("message", "Ocurrió un error al obtener la lista de libros");
+            request.setAttribute("code", 500);
+            request.setAttribute("data", result.getData());
+            request.setAttribute("pagination", result.getPagination());
+            request.getRequestDispatcher("/libros/librosList.jsp").forward(request, response);
         }
-
-        result.getPagination().setUrl("books");
-        result.getPagination().CalcularPaginas(desde, filas);
-
-        this.borrarMensajeDeSession(request);
-
-        request.setAttribute("data", result.getData());
-        request.setAttribute("pagination", result.getPagination());
-        request.setAttribute("code", 200);
-        request.setAttribute("search", search);
-        request.getRequestDispatcher("/libros/librosList.jsp").forward(request, response);
+        
     }
 
     /**

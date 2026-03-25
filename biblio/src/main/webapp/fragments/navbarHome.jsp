@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Prestamos</a>
+        <a class="nav-link" href="/loans">Prestamos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/books">Libros</a>

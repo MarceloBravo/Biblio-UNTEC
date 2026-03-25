@@ -80,39 +80,21 @@ public class BookSaveServlet extends HttpServlet {
         if(id != null && !id.isEmpty()){
             book.setId(Integer.parseInt(id));
         }
-        System.out.println("**GRABANDO LIBRO");
-        book.setIsbn(request.getParameter("isbn"));
-        System.out.println("**AAAAA");
-        book.setNombre(request.getParameter("nombre"));
-        System.out.println("**BBBBB");
-        book.setEditorial(request.getParameter("editorial"));
-        System.out.println("**CCCCC");
-        book.setAutor(request.getParameter("autor"));
-        System.out.println("**DDDDD");
-        book.setResumen(request.getParameter("resumen"));
-        System.out.println("**EEEEE");
 
         String fechaStr = request.getParameter("fechaPublicacion");
 
-        System.out.println(fechaStr);
         if (fechaStr != null && !fechaStr.isEmpty()) {
-            System.out.println("*************");
             try {
                 book.setFechaPublicacion(java.sql.Date.valueOf(fechaStr));
             } catch (IllegalArgumentException e) {
-                System.out.println("-----------ERROR--------------");
                 book.setFechaPublicacion(null); 
-                System.out.println("Formato de fecha inválido: " + fechaStr);
             }
         } else {
-            System.out.println("-----------NULO--------------");
             // Maneja el caso de fecha nula o vacía
             book.setFechaPublicacion(null); 
         }
 
-        System.out.println("**FFFFF");
         book.setIdioma(request.getParameter("idioma"));
-        System.out.println("**GGGGGG");
         book.setEdicion(Integer.parseInt(request.getParameter("edicion")));        
         
         return book;

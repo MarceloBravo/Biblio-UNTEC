@@ -11,7 +11,7 @@
             <c:if test='${code == 500}'>
                 toast-danger
             </c:if>
-            <c:if test='${code != 200 && code != 400 && 500}'>
+            <c:if test='${code != 200 && code != 400}'>
                 toast-info
             </c:if>
         " role="alert" aria-live="assertive" aria-atomic="true">
@@ -27,7 +27,7 @@
                     <c:if test="${code == 500}">
                         Error interno del servidor
                     </c:if>
-                    <c:if test="${code != 200 && code != 400 && 500}">
+                    <c:if test="${code != 200 && code != 400}">
                         Información                        
                     </c:if>
                 </strong>

@@ -1,6 +1,6 @@
 package interfaces.dao;
 
-import dto.PrestamoDTO;
+import dto.LoanListDTO;
 import entities.Prestamo;
 
 /**
@@ -14,7 +14,7 @@ public interface LoanDAOInterface {
      * @param filas el número de filas a devolver
      * @return un objeto PrestamoDTO con la lista de préstamos y la información de paginación
      */
-    public PrestamoDTO list(Integer desde, Integer filas);
+    public LoanListDTO list(Integer desde, Integer filas);
 
     /**
      * Lista los préstamos con paginación y búsqueda.
@@ -23,7 +23,7 @@ public interface LoanDAOInterface {
      * @param search el término de búsqueda
      * @return un objeto PrestamoDTO con la lista de préstamos y la información de paginación
      */
-    public PrestamoDTO list(Integer desde, Integer filas, String search);
+    public LoanListDTO list(Integer desde, Integer filas, String search);
 
     /**
      * Obtiene un préstamo por su ID.

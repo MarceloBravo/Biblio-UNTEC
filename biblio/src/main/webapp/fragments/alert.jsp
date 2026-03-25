@@ -3,16 +3,16 @@
         id="feedback-alert" 
         class="alert 
             <c:if test='${code == 200}'>
-                toast-success
+                alert-success
             </c:if>
             <c:if test='${code == 400}'>
-                toast-danger
+                alert-danger
             </c:if>
             <c:if test='${code == 500}'>
-                toast-danger
+                alert-danger
             </c:if>
-            <c:if test='${code != 200 && code != 400 && 500}'>
-                toast-info
+            <c:if test='${code != 200 && code != 400}'>
+                alert-info
             </c:if>                        
             alert-dismissible fade show"                         
         role="alert">
@@ -20,3 +20,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 </c:if>
+
+<div 
+    id="feedback-alert-js" 
+    class="alert alert-danger"                         
+    role="alert"
+>
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

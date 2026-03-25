@@ -3,6 +3,7 @@ package controllers.users;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 import cdi.InjectionBeanCDI;
 import entities.Usuario;
@@ -14,7 +15,7 @@ import interfaces.Services.UserServiceInterface;
  * Extiende {@link UserSaveServlet} para reutilizar parte de su funcionalidad.
  */
 @WebServlet("/users/ver/*")
-public class UserGetServlet extends UserSaveServlet{
+public class UserGetServlet extends HttpServlet{
     private UserServiceInterface service;
 
     /**

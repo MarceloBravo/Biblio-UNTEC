@@ -1,11 +1,12 @@
 package dao;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import dto.PaginationDTO;
-import dto.PrestamoDTO;
+import dto.LoanListDTO;
 import entities.Libro;
 import entities.Prestamo;
 import entities.Usuario;
@@ -21,11 +22,11 @@ public class PrestamoDAO implements LoanDAOInterface{
     private ConnectionMySqlInterface connectionMySql;
     private static String mainQuery = "SELECT " + 
                         "p.id, p.usuario_id, p.libro_id, p.fecha_prestamo, p.fecha_devolucion, p.fecha_retorno, " + 
-                        "l.isbn, l.nombre AS libro_nombre, l.editorial, l.autor, l.resumen, l.fecha_publicacion, l.idioma, l.edicion," +
+                        "l.isbn, l.nombre, l.editorial, l.autor, l.resumen, l.fecha_publicacion, l.idioma, l.edicion," +
                         "u.nombre AS usuario_nombre, u.apellidos, u.email " +
                         "FROM prestamos p " +
                         "INNER JOIN libros l ON p.libro_id = l.id " +
-                        "INNER JOIN usuarios u ON p.usuario_id = u.id = u.id ";
+                        "INNER JOIN usuarios u ON p.usuario_id = u.id ";
     
     public PrestamoDAO(){
     }
@@ -36,8 +37,8 @@ public class PrestamoDAO implements LoanDAOInterface{
     }   
 
     @Override
-    public PrestamoDTO list(Integer desde, Integer filas){
-        PrestamoDTO result = new PrestamoDTO();
+    public LoanListDTO list(Integer desde, Integer filas){
+        LoanListDTO result = new LoanListDTO();
         PaginationDTO pagDTO = new PaginationDTO();
         List<Prestamo> data = new ArrayList<>();
         Integer totReg = this.getTotReg("", null);  
@@ -66,18 +67,17 @@ public class PrestamoDAO implements LoanDAOInterface{
 
 
     @Override
-    public PrestamoDTO list(Integer desde, Integer filas, String search){
-        PrestamoDTO result = new PrestamoDTO();
+    public LoanListDTO list(Integer desde, Integer filas, String search){
+        LoanListDTO result = new LoanListDTO();
         PaginationDTO pagDTO = new PaginationDTO();
         List<Prestamo> data = new ArrayList<>();
-        String where = "WHERE p.id LIKE ? OR u.nombre LIKE ? OR u.apellidos LIKE ? OR u.email LIKE ? OR l.isbn LIKE ? OR l.nombre LIKE ? OR l.editorial LIKE ? OR l.autor LIKE ? OR DATE_FORMAT(l.fecha_publicacion, '%Y-%m-%d %H:%i:%s') LIKE ? OR l.idioma LIKE ? ";
+        String where = "WHERE u.nombre LIKE ? OR u.apellidos LIKE ? OR u.email LIKE ? OR l.isbn LIKE ? OR l.nombre LIKE ? OR l.editorial LIKE ? OR l.autor LIKE ? OR DATE_FORMAT(l.fecha_publicacion, '%Y-%m-%d %H:%i:%s') LIKE ? OR l.idioma LIKE ? ";
         Integer totReg = this.getTotReg("", search);  
         String query = mainQuery + where + "ORDER BY p.id DESC LIMIT ?, ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
-            Integer intSearch = search.matches("\\d+") ?  Integer.parseInt(search) : null;
-            ps.setInt(1, intSearch);
+            ps.setString(1, "%" + search + "%");
             ps.setString(2, "%" + search + "%");
             ps.setString(3, "%" + search + "%");
             ps.setString(4, "%" + search + "%");
@@ -86,9 +86,8 @@ public class PrestamoDAO implements LoanDAOInterface{
             ps.setString(7, "%" + search + "%");
             ps.setString(8, "%" + search + "%");
             ps.setString(9, "%" + search + "%");
-            ps.setString(10, "%" + search + "%");
-            ps.setInt(11, desde);
-            ps.setInt(12, filas);
+            ps.setInt(10, desde);
+            ps.setInt(11, filas);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){   
                 Libro book = new Libro(rs.getInt("libro_id"), rs.getString("isbn"), rs.getString("nombre"), rs.getString("editorial"), rs.getString("autor"), rs.getString("resumen"), rs.getDate("fecha_publicacion"), rs.getString("idioma"), rs.getInt("edicion"));
@@ -109,7 +108,7 @@ public class PrestamoDAO implements LoanDAOInterface{
 
     @Override
     public Prestamo getById(Integer id){
-        String query = mainQuery + " WHERE id = ?";
+        String query = mainQuery + " WHERE p.id = ?";
         try {
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -130,10 +129,10 @@ public class PrestamoDAO implements LoanDAOInterface{
 
     @Override
     public Prestamo create(Prestamo prestamo){
-        String query = "INSERT INTO prestamo (usuario_id, libro_id, fecha_prestamo, fecha_devolucion, fecha_retorno) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO prestamos (usuario_id, libro_id, fecha_prestamo, fecha_devolucion, fecha_retorno) VALUES (?, ?, ?, ?, ?)";
         try{
             Connection cnn = connectionMySql.getConnection();
-            PreparedStatement ps = cnn.prepareStatement(query);
+            PreparedStatement ps = cnn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, prestamo.getUsuario().getId());
             ps.setInt(2, prestamo.getLibro().getId());
             ps.setDate(3, prestamo.getFechaPrestamo());
@@ -152,7 +151,7 @@ public class PrestamoDAO implements LoanDAOInterface{
 
     @Override
     public Prestamo update(Prestamo prestamo){
-        String query = "UPDATE prestamo SET usuario_id = ?, libro_id = ?, fecha_prestamo = ?, fecha_devolucion = ?, fecha_retorno = ? WHERE id = ?";
+        String query = "UPDATE prestamos SET usuario_id = ?, libro_id = ?, fecha_prestamo = ?, fecha_devolucion = ?, fecha_retorno = ? WHERE id = ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -173,7 +172,7 @@ public class PrestamoDAO implements LoanDAOInterface{
     
     @Override
     public boolean delete(Integer id){
-        String query = "DELETE FROM prestamo WHERE id = ?";
+        String query = "DELETE FROM prestamos WHERE id = ?";
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
@@ -205,13 +204,11 @@ public class PrestamoDAO implements LoanDAOInterface{
 
     private Integer getTotReg(String where, String search){
         String query = "SELECT COUNT(*) FROM prestamos " + where;
-        System.out.println(query);
         try{
             Connection cnn = connectionMySql.getConnection();
             PreparedStatement ps = cnn.prepareStatement(query);
             if(search != null){
-                Integer intSearch = search.matches("\\d+") ?  Integer.parseInt(search) : null;
-                ps.setInt(1, intSearch);
+                ps.setString(1, "%" + search + "%");
                 ps.setString(2, "%" + search + "%");
                 ps.setString(3, "%" + search + "%");
                 ps.setString(4, "%" + search + "%");
@@ -220,7 +217,6 @@ public class PrestamoDAO implements LoanDAOInterface{
                 ps.setString(7, "%" + search + "%");
                 ps.setString(8, "%" + search + "%");
                 ps.setString(9, "%" + search + "%");
-                ps.setString(10, "%" + search + "%");
             }
             ResultSet rs = ps.executeQuery();
             if(rs.next()){

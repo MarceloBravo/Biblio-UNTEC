@@ -61,8 +61,12 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("message",
                     user != null ? "Autenticación exitosa" : "Usuario o contraseña incorrectos");
             request.setAttribute("code", user != null ? 200 : 403);
-            request.getRequestDispatcher(user != null ? "home.jsp" : "index.jsp")
-                    .forward(request, response);
+            if(user != null)
+            {
+                response.sendRedirect(request.getContextPath() + "/loans");                    
+            }else{
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         } catch (Exception e) {
             System.out.println(e);
             request.setAttribute("message", "Ocurrió un error al autenticar el usuario");
