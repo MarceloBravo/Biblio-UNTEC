@@ -10,7 +10,7 @@
         <link href="/styles/modal.css" rel="stylesheet">
         <link href="/styles/users/usuariosForm.css" rel="stylesheet">
 
-        <script src="/usuarios/usuarios.js"></script>
+        <script src="/js/usuarios.js"></script>
         <script src="/js/modal.js" type="module"></script>
     </head>
     <body>

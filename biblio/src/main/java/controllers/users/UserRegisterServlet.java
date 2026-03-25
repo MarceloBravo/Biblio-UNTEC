@@ -65,7 +65,7 @@ public class UserRegisterServlet extends HttpServlet {private UserServiceInterfa
             request.setAttribute("message", "Ocurrió un error al registrar el usuario");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);
-            request.getRequestDispatcher("/usuarios/usuariosList.jsp")
+            request.getRequestDispatcher("/WEB-INF/usuarios/usuariosList.jsp")
                     .forward(request, response);
         }
     }

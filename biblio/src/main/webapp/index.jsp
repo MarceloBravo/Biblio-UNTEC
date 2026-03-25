@@ -22,7 +22,7 @@
             <div class="btn-container">
                 <button class="btn btn-primary">Iniciar Sesión</button>
             </div>
-            <p>¿No tienes una cuenta? <a href="registerUser.jsp">Registrate acá</a></p>
+            <p>¿No tienes una cuenta? <a href="registerForm">Registrate acá</a></p>
         </form>
     </body>
 </html>

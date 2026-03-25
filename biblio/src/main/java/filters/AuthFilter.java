@@ -52,10 +52,11 @@ public class AuthFilter implements Filter {
         boolean loginRequest = req.getRequestURI().equals(loginURI);
         String path = req.getRequestURI().substring(req.getContextPath().length());        
         boolean isLoginServlet = path.equals("/login");
+        boolean isRegisterPath = path.equals("/registerForm") || path.equals("/register");
         boolean isStaticResource = path.startsWith("/styles/") || 
                                     path.startsWith("/js/");
 
-        if (loggedIn || loginRequest || isStaticResource || isLoginServlet) {
+        if (loggedIn || loginRequest || isStaticResource || isLoginServlet || isRegisterPath) {
             // Si está logueado o va al login, permitimos que siga su camino
             chain.doFilter(request, response);
         } else {

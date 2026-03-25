@@ -82,7 +82,7 @@ public class UserListServlet extends HttpServlet {
                 request.setAttribute("pagination", result.getPagination());
                 request.setAttribute("code", 200);
                 request.setAttribute("search", search);
-                request.getRequestDispatcher("/usuarios/usuariosList.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/usuarios/usuariosList.jsp").forward(request, response);
             }
         }catch(Exception e){
             System.out.println(e);
@@ -91,7 +91,7 @@ public class UserListServlet extends HttpServlet {
             request.setAttribute("code", 500);
             request.setAttribute("data", result.getData());
             request.setAttribute("pagination", result.getPagination());
-            request.getRequestDispatcher("/usuarios/usuariosList.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/usuarios/usuariosList.jsp").forward(request, response);
         }
     }
 

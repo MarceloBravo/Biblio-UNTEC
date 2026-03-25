@@ -10,7 +10,7 @@
         <link href="/styles/modal.css" rel="stylesheet">
         <link href="/styles/books/librosForm.css" rel="stylesheet">        
 
-        <script src="/libros/libros.js"></script>
+        <script src="/js/libros.js"></script>
         <script src="/js/modal.js" type="module"></script>
     </head>
     <body>

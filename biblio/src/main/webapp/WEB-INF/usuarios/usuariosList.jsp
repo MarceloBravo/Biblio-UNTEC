@@ -10,7 +10,7 @@
         <link href="/styles/modal.css" rel="stylesheet">
         <link href="/styles/toast.css" rel="stylesheet">
 
-        <script src="/usuarios/usuarios.js"></script>
+        <script src="/js/usuarios.js"></script>
         <script src="/js/modal.js" type="module"></script>
         <script src="/js/alert.js" type="module"></script>
         <script src="/js/toast.js" type="module"></script>
