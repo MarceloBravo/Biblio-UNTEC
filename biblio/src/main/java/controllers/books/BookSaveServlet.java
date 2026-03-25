@@ -63,7 +63,7 @@ public class BookSaveServlet extends HttpServlet {
             request.setAttribute("message", "Ocurrió un error al registrar el libro");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);
-            request.getRequestDispatcher("/libros/librosForm.jsp")
+            request.getRequestDispatcher("/WEB-INF/libros/librosForm.jsp")
                     .forward(request, response);
         }
     }
@@ -80,6 +80,11 @@ public class BookSaveServlet extends HttpServlet {
         if(id != null && !id.isEmpty()){
             book.setId(Integer.parseInt(id));
         }
+        book.setIsbn(request.getParameter("isbn"));
+        book.setNombre(request.getParameter("nombre"));
+        book.setAutor(request.getParameter("autor"));
+        book.setEditorial(request.getParameter("editorial"));
+        book.setResumen(request.getParameter("resumen"));
 
         String fechaStr = request.getParameter("fechaPublicacion");
 

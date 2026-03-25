@@ -30,7 +30,7 @@ public class BookNuewServlet extends BookSaveServlet{
     {
         Libro book = new Libro();
         request.setAttribute("libro", book);
-        request.getRequestDispatcher(request.getContextPath() + "/libros/librosForm.jsp").forward(request, response);
+        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/libros/librosForm.jsp").forward(request, response);
     }
 
 }
