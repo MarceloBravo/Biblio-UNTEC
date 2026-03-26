@@ -189,4 +189,4 @@ Este proyecto es para fines educativos.
 ---
 
 **Desarrollado como parte del Bootcamp Java 2025**  
-📧 Contacto: [Información de contacto del bootcamp]
+📧 Desarrollador por: Marcelo A. Bravo C.
