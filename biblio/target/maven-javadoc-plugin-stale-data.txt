@@ -1,0 +1,73 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-classpath
+'C:/Users/Mabc/.m2/repository/javax/enterprise/cdi-api/1.2/cdi-api-1.2.jar;C:/Users/Mabc/.m2/repository/javax/el/javax.el-api/3.0.0/javax.el-api-3.0.0.jar;C:/Users/Mabc/.m2/repository/javax/interceptor/javax.interceptor-api/1.2/javax.interceptor-api-1.2.jar;C:/Users/Mabc/.m2/repository/org/jboss/weld/servlet/weld-servlet/2.4.8.Final/weld-servlet-2.4.8.Final.jar;C:/Users/Mabc/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar;C:/Users/Mabc/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar;C:/Users/Mabc/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar;C:/Users/Mabc/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar;C:/Users/Mabc/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar;C:/Users/Mabc/.m2/repository/org/mindrot/jbcrypt/0.4/jbcrypt-0.4.jar;C:/Users/Mabc/.m2/repository/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'1.8'
+-sourcepath
+'D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/src/main/java;D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'biblio Maven Webapp 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'biblio Maven Webapp 1.0-SNAPSHOT API'
+cdi
+controllers.books
+controllers.loans
+controllers
+controllers.users
+dao
+dto
+entities
+filters
+interfaces.dao
+interfaces.Services
+interfaces.utils
+services
+utils
+C:\Users\Mabc\.m2\repository\javax\enterprise\cdi-api\1.2\cdi-api-1.2.jar = 1772491408501
+C:\Users\Mabc\.m2\repository\javax\el\javax.el-api\3.0.0\javax.el-api-3.0.0.jar = 1773595934113
+C:\Users\Mabc\.m2\repository\javax\interceptor\javax.interceptor-api\1.2\javax.interceptor-api-1.2.jar = 1773595934429
+C:\Users\Mabc\.m2\repository\org\jboss\weld\servlet\weld-servlet\2.4.8.Final\weld-servlet-2.4.8.Final.jar = 1773603397983
+C:\Users\Mabc\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar = 1771683972486
+C:\Users\Mabc\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar = 1773606006525
+C:\Users\Mabc\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar = 1773351640388
+C:\Users\Mabc\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar = 1773351641201
+C:\Users\Mabc\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar = 1772842513702
+C:\Users\Mabc\.m2\repository\org\mindrot\jbcrypt\0.4\jbcrypt-0.4.jar = 1773761191540
+C:\Users\Mabc\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar = 1774396374399
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java = 1774116550644
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\generated-sources\annotations = 1774495300626
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\allclasses-index.html = 1774495312199
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\allpackages-index.html = 1774495312202
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\element-list = 1774495310493
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\help-doc.html = 1774495312486
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\index-all.html = 1774495312412
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\index.html = 1774495312075
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\member-search-index.js = 1774495312227
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\module-search-index.js = 1774495312209
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\overview-summary.html = 1774495312434
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\overview-tree.html = 1774495312062
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\package-search-index.js = 1774495312216
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\search.html = 1774495312424
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\serialized-form.html = 1774495311083
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\tag-search-index.js = 1774495312253
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\type-search-index.js = 1774495312223

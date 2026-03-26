@@ -1,0 +1,13 @@
+.form-group{
+    margin-bottom: 1em;
+}
+
+.btn-container{
+    margin-top: 3em;
+}
+
+.btn-disabled{
+    background: grey !important;
+    border-color: grey !important;
+    color: #d1c7c7 !important;
+}

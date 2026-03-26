@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"cdi"},{"l":"controllers"},{"l":"controllers.books"},{"l":"controllers.loans"},{"l":"controllers.users"},{"l":"dao"},{"l":"dto"},{"l":"entities"},{"l":"filters"},{"l":"interfaces.dao"},{"l":"interfaces.Services"},{"l":"interfaces.utils"},{"l":"services"},{"l":"utils"}];updateSearchResults();

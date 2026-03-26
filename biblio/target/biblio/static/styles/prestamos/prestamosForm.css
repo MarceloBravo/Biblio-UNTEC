@@ -1,0 +1,37 @@
+.book-container,
+.user-container,
+.loan-container{
+    padding: 0.5em;
+    border: #dfe3e7 solid thin;
+    border-radius: 10px;
+    margin: 0px 0px 1em 0px;
+}
+
+.isbn-container,
+.user_id-container{
+    display: flex;
+    gap: 1em;
+}
+
+#input-isbn,
+#input-user_name{
+    width: min-content;
+}
+
+.form-group{
+    margin-bottom: 1em;
+}
+
+.btn-container{
+    margin-top: 3em;
+}
+
+.btn-disabled{
+    background: grey !important;
+    border-color: grey !important;
+    color: #d1c7c7 !important;
+}
+
+.input-disabled{
+    background-color: #e9ecef !important;
+}

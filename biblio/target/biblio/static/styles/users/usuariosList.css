@@ -1,0 +1,30 @@
+.form-search{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-search > div{
+    display: flex;
+    width: 50%;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.form-search > div > label {
+    width: 10em;
+}
+
+form{
+    margin: 0px;
+}
+
+.col-action{
+    display: flex;
+    align-items: center;
+}
+
+.btn-delete{
+    background: none;
+    border: none;
+    margin: 0px;
+}
