@@ -7,7 +7,7 @@
             <title>Biblioteca Virtual</title>
             <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
 
-                <link rel="stylesheet" href="/styles/register_user.css">
+                <link rel="stylesheet" href="/static/styles/register_user.css">
         </head>
 
         <body>

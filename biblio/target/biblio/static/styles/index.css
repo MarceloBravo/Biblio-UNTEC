@@ -1,20 +1,21 @@
-body{
+body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    background-color: #c1c3c0;
+    background-color: #004b4b;
     align-items: center;
     flex-direction: column;
 }
 
-h2{
-    font-family: sans-serif;
+h2 {
+    color: white;
+    font-family: auto;
 }
 
-form{
+form {
     background: white;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -23,7 +24,7 @@ form{
     max-width: 400px;
 }
 
-form > div{
+form>div {
     margin-bottom: 1rem;
 }
 
@@ -31,7 +32,7 @@ form label {
     width: 5em;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     justify-content: flex-end;
 }

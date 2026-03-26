@@ -1,8 +1,23 @@
-nav{
+nav {
     padding-left: 10px !important;
     padding-right: 10px !important;
 }
 
-.navbar-collapse{
+.navbar-brand {
+    font-weight: bold;
+    color: #059387;
+}
+
+.navbar-collapse {
     justify-content: space-between;
+}
+
+.nav-link:hover {
+    cursor: pointer;
+    color: #1dd3c2 !important;
+    text-decoration: underline;
+}
+
+.navbar-text {
+    padding-right: 20px;
 }

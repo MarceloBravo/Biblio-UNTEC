@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Filtro de autenticación que intercepta todas las peticiones para verificar si el usuario está autenticado.
+ * Filtro de autenticación que intercepta todas las peticiones para verificar si
+ * el usuario está autenticado.
  */
 @WebFilter("/*")
 public class AuthFilter implements Filter {
-    
+
     /**
      * Inicializa el filtro.
      *
@@ -21,8 +22,9 @@ public class AuthFilter implements Filter {
      * @throws ServletException si ocurre un error en el servlet
      */
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {}
-    
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+
     /**
      * Realiza el filtrado de la petición.
      *
@@ -34,11 +36,10 @@ public class AuthFilter implements Filter {
      */
     @Override
     public void doFilter(
-        ServletRequest request, 
-        ServletResponse response, 
-        FilterChain chain
-    ) throws IOException, ServletException {
-        
+            ServletRequest request,
+            ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false); // false para no crear una nueva si no existe
@@ -47,14 +48,14 @@ public class AuthFilter implements Filter {
 
         // 1. Verificar si la sesión existe y tiene el atributo
         boolean loggedIn = (session != null && session.getAttribute("userSession") != null);
-        
+
         // 2. Exclusiones al filtro
         boolean loginRequest = req.getRequestURI().equals(loginURI);
-        String path = req.getRequestURI().substring(req.getContextPath().length());        
+        String path = req.getRequestURI().substring(req.getContextPath().length());
         boolean isLoginServlet = path.equals("/login");
         boolean isRegisterPath = path.equals("/registerForm") || path.equals("/register");
-        boolean isStaticResource = path.startsWith("/styles/") || 
-                                    path.startsWith("/js/");
+        boolean isStaticResource = path.startsWith("/static/styles/") ||
+                path.startsWith("/static/js/");
 
         if (loggedIn || loginRequest || isStaticResource || isLoginServlet || isRegisterPath) {
             // Si está logueado o va al login, permitimos que siga su camino
@@ -69,5 +70,6 @@ public class AuthFilter implements Filter {
      * Destruye el filtro.
      */
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }
