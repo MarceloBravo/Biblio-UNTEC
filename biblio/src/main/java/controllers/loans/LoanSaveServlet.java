@@ -91,9 +91,11 @@ public class LoanSaveServlet extends HttpServlet {
                     result != null ? "prestamo " + accion + " con éxito" : "El libro no pudo ser " + accion);
             request.getSession().setAttribute("code", result != null ? 200 : 500);
             request.getSession().setAttribute("data", result);
+            
             response.sendRedirect(request.getContextPath() + "/loans");
         } catch (Exception e) {
             System.out.println(e);
+            
             request.setAttribute("message", "Ocurrió un error al registrar el prestamo");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);

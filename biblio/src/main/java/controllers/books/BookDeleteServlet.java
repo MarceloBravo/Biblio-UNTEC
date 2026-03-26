@@ -52,11 +52,13 @@ public class BookDeleteServlet extends HttpServlet {
             boolean result = this.service.delete(id);
             request.getSession().setAttribute("message", result ? "Libro eliminado con éxito" : "El libro no pudo ser eliminado");
             request.getSession().setAttribute("code", result ? 200 : 500);
+            
             response.sendRedirect(request.getContextPath() + "/books");
         }catch(Exception e){
             System.out.println(e);
             request.getSession().setAttribute("message", "Ocurrió un error al eliminar el libro");
             request.getSession().setAttribute("code", 500);
+            
             response.sendRedirect(request.getContextPath() + "/books");
         }
 

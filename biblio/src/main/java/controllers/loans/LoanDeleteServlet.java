@@ -64,9 +64,11 @@ public class LoanDeleteServlet extends HttpServlet {
             request.getSession().setAttribute("message",
                     result ? "Prestamo eliminado con éxito" : "El prestamo no pudo ser eliminado");
             request.getSession().setAttribute("code", result ? 200 : 500);
+            
             response.sendRedirect(request.getContextPath() + "/loans");
         } catch (Exception e) {
             System.out.println(e);
+            
             request.getSession().setAttribute("message", "Ocurrió un error al eliminar el prestamo");
             request.getSession().setAttribute("code", 500);
             response.sendRedirect(request.getContextPath() + "/loans");

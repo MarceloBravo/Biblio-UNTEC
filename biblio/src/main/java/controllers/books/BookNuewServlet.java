@@ -29,6 +29,7 @@ public class BookNuewServlet extends BookSaveServlet{
     ) throws ServletException, java.io.IOException 
     {
         Libro book = new Libro();
+        
         request.setAttribute("libro", book);
         request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/views/libros/librosForm.jsp").forward(request, response);
     }

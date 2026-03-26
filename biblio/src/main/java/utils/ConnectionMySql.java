@@ -28,12 +28,11 @@ public class ConnectionMySql implements ConnectionMySqlInterface {
     /**
      * Usuario de la base de datos.
      */
-    private static String user = "root";
+    private static String user = "root";    
     /**
      * Contraseña del usuario de la base de datos.
      */
     private static String password = "admin123";
-
     /**
      * Constructor por defecto.
      */

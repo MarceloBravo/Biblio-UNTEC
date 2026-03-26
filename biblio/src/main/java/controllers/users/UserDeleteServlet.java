@@ -50,11 +50,13 @@ public class UserDeleteServlet extends HttpServlet {
         try{
             Integer id = Integer.parseInt(request.getParameter("id"));
             boolean result = this.service.delete(id);
+            
             request.getSession().setAttribute("message", result ? "Usuario eliminado con éxito" : "El usuario no pudo ser eliminado");
             request.getSession().setAttribute("code", result ? 200 : 500);
             response.sendRedirect(request.getContextPath() + "/users");
         }catch(Exception e){
             System.out.println(e);
+            
             request.getSession().setAttribute("message", "Ocurrió un error al eliminar el usuario");
             request.getSession().setAttribute("code", 500);
             response.sendRedirect(request.getContextPath() + "/users");

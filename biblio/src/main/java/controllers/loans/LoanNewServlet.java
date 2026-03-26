@@ -35,6 +35,7 @@ public class LoanNewServlet extends BookSaveServlet {
             javax.servlet.http.HttpServletRequest request,
             javax.servlet.http.HttpServletResponse response) throws ServletException, java.io.IOException {
         Prestamo loan = new Prestamo();
+        
         request.setAttribute("prestamo", loan);
         request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/views/prestamos/prestamosForm.jsp")
                 .forward(request, response);

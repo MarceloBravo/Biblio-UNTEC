@@ -29,6 +29,7 @@ public class UserNuewServlet extends UserSaveServlet{
     ) throws ServletException, java.io.IOException 
     {
         Usuario user = new Usuario();
+        
         request.setAttribute("usuario", user);
         request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/views/usuarios/usuariosForm.jsp").forward(request, response);
     }

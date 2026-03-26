@@ -33,6 +33,7 @@ public class RegisterForm extends HttpServlet {
     public void doGet(
             HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+        
         request.getRequestDispatcher("/WEB-INF/views/registerUser.jsp").forward(request, response);
     }
 

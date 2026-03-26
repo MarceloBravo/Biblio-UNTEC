@@ -63,11 +63,13 @@ public class LoanGetServlet extends HttpServlet {
 
             Prestamo loan = id != null ? this.service.getById(Integer.parseInt(id)) : null;
 
+            
             request.setAttribute("prestamo", loan);
             request.setAttribute("code", loan != null ? 200 : 404);
             request.getRequestDispatcher("/WEB-INF/views/prestamos/prestamosForm.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
+            
             request.setAttribute("message", "Ocurrió un error al obtener los datos del prestamo");
             request.setAttribute("code", 500);
             request.getRequestDispatcher("/WEB-INF/views/prestamos/prestamosForm.jsp");

@@ -52,11 +52,13 @@ public class BookGetServlet extends HttpServlet{
 
             Libro user = id != null ? this.service.getById(Integer.parseInt(id)) : null;
 
+            
             request.setAttribute("libro", user);
             request.setAttribute("code", user != null ? 200 : 404);
             request.getRequestDispatcher("/WEB-INF/views/libros/librosForm.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println(e);
+            
             request.setAttribute("message", "Ocurrió un error al obtener el libro");
             request.setAttribute("code", 500);
             request.getRequestDispatcher("/WEB-INF/views/libros/librosForm.jsp");

@@ -54,12 +54,14 @@ public class BookSaveServlet extends HttpServlet {
             
             Libro result = this.service.save(book);
             
+            
             request.getSession().setAttribute("message", result != null ? "libro " + accion + " con éxito" : "El libro no pudo ser " + accion);
             request.getSession().setAttribute("code", result != null ? 200 : 500);
             request.getSession().setAttribute("data", result);
             response.sendRedirect(request.getContextPath() + "/books");
         } catch (Exception e) {
             System.out.println(e);
+            
             request.setAttribute("message", "Ocurrió un error al registrar el libro");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);

@@ -11,7 +11,7 @@
 -source
 '1.8'
 -sourcepath
-'D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/src/main/java'
+'D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/src/main/java;D:/bootcamps/Java 2025/proyectos/Modulo 5 - JEE/untec/biblio/target/generated-sources/annotations'
 -author
 -bottom
 'Copyright &#169; 2026. All rights reserved.'
@@ -55,18 +55,19 @@ C:\Users\Mabc\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar = 1772842513702
 C:\Users\Mabc\.m2\repository\org\mindrot\jbcrypt\0.4\jbcrypt-0.4.jar = 1773761191540
 C:\Users\Mabc\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar = 1774396374399
 D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\src\main\java = 1774116550644
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\allclasses-index.html = 1774531097512
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\allpackages-index.html = 1774531097528
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\element-list = 1774531095959
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\help-doc.html = 1774531097746
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\index-all.html = 1774531097731
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\index.html = 1774531097322
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\member-search-index.js = 1774531097537
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\module-search-index.js = 1774531097530
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\overview-summary.html = 1774531097737
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\overview-tree.html = 1774531097309
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\package-search-index.js = 1774531097532
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\search.html = 1774531097735
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\serialized-form.html = 1774531096252
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\tag-search-index.js = 1774531097538
-D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\type-search-index.js = 1774531097534
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\generated-sources\annotations = 1774558628774
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\allclasses-index.html = 1774558640317
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\allpackages-index.html = 1774558640321
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\element-list = 1774558638768
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\help-doc.html = 1774558640413
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\index-all.html = 1774558640386
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\index.html = 1774558640278
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\member-search-index.js = 1774558640329
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\module-search-index.js = 1774558640323
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\overview-summary.html = 1774558640392
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\overview-tree.html = 1774558640273
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\package-search-index.js = 1774558640325
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\search.html = 1774558640389
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\serialized-form.html = 1774558639312
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\tag-search-index.js = 1774558640333
+D:\bootcamps\Java 2025\proyectos\Modulo 5 - JEE\untec\biblio\target\reports\apidocs\type-search-index.js = 1774558640326

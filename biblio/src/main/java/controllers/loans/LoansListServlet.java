@@ -95,6 +95,7 @@ public class LoansListServlet extends HttpServlet {
             request.setAttribute("pagination", result.getPagination());
 
         }
+        
         request.getRequestDispatcher("/WEB-INF/views/prestamos/prestamosList.jsp").forward(request, response);
     }
 

@@ -71,6 +71,7 @@ public class UserListServlet extends HttpServlet {
             result.getPagination().CalcularPaginas(desde, filas);
 
             this.borrarMensajeDeSession(request);
+            
             if("json".equals(format)){
                 // Convertir la lista a JSON (puedes usar la librería Gson o Jackson)
                 String json = new Gson().toJson(result.getData());
@@ -86,6 +87,7 @@ public class UserListServlet extends HttpServlet {
             }
         }catch(Exception e){
             System.out.println(e);
+            
             BookListDTO result = new BookListDTO();
             request.setAttribute("message", "Ocurrió un error al obtener la lista de libros");
             request.setAttribute("code", 500);

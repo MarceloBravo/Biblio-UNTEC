@@ -35,9 +35,11 @@ public class LogoutServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession(true);
             session.invalidate();
+            
             response.sendRedirect(request.getContextPath() + "/index");
         } catch (Exception e) {
             System.out.println(e);
+            
             request.setAttribute("message", "Ocurrió un error al cerrar la sesión");
             request.setAttribute("code", 500);
             request.getRequestDispatcher("index.jsp")
