@@ -5,13 +5,13 @@
     <head>
         <title>Biblioteca Virtual</title>
         <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
-        <link href="/styles/navbarHome.css" rel="stylesheet">
-        <link href="/styles/prestamos/prestamosList.css" rel="stylesheet">
-        <link href="/styles/modal.css" rel="stylesheet">
-        <link href="/styles/prestamos/prestamosForm.css" rel="stylesheet">        
+        <link href="/static/styles/navbarHome.css" rel="stylesheet">
+        <link href="/static/styles/prestamos/prestamosList.css" rel="stylesheet">
+        <link href="/static/styles/modal.css" rel="stylesheet">
+        <link href="/static/styles/prestamos/prestamosForm.css" rel="stylesheet">        
 
-        <script src="/js/prestamos.js"></script>
-        <script src="/js/modal.js" type="module"></script>
+        <script src="/static/js/prestamos.js"></script>
+        <script src="/static/js/modal.js" type="module"></script>
     </head>
     <body>
         <%@include file="/WEB-INF/fragments/navbarHome.jsp" %>
