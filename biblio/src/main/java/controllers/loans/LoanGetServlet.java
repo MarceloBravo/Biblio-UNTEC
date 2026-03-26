@@ -32,12 +32,12 @@ public class LoanGetServlet extends HttpServlet{
             
             request.setAttribute("prestamo", loan);
             request.setAttribute("code", loan != null ? 200 : 404);
-            request.getRequestDispatcher("/prestamos/prestamosForm.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/prestamos/prestamosForm.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println(e);
             request.setAttribute("message", "Ocurrió un error al obtener los datos del prestamo");
             request.setAttribute("code", 500);
-            request.getRequestDispatcher("/prestamos/prestamosForm.jsp");
+            request.getRequestDispatcher("/WEB-INF/prestamos/prestamosForm.jsp");
         }
     }
 }

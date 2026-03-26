@@ -10,7 +10,7 @@
         <link href="/styles/modal.css" rel="stylesheet">
         <link href="/styles/prestamos/prestamosForm.css" rel="stylesheet">        
 
-        <script src="/prestamos/prestamos.js"></script>
+        <script src="/js/prestamos.js"></script>
         <script src="/js/modal.js" type="module"></script>
     </head>
     <body>
