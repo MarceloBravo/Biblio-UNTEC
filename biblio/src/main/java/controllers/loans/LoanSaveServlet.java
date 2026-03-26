@@ -59,7 +59,7 @@ public class LoanSaveServlet extends HttpServlet {
             request.setAttribute("message", "Ocurrió un error al registrar el prestamo");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);
-            request.getRequestDispatcher("/WEB-INF/prestamos/prestamosForm.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/prestamos/prestamosForm.jsp")
                     .forward(request, response);
         }
     }

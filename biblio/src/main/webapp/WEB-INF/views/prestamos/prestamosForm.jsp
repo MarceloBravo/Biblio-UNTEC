@@ -4,7 +4,7 @@
 <body>
     <head>
         <title>Biblioteca Virtual</title>
-        <%@include file="/fragments/header_scripts.jsp" %>
+        <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
         <link href="/styles/navbarHome.css" rel="stylesheet">
         <link href="/styles/prestamos/prestamosList.css" rel="stylesheet">
         <link href="/styles/modal.css" rel="stylesheet">
@@ -14,11 +14,11 @@
         <script src="/js/modal.js" type="module"></script>
     </head>
     <body>
-        <%@include file="/fragments/navbarHome.jsp" %>
-        <%@include file="/fragments/modal.jsp" %>
-        <%@include file="/fragments/searchUserModal.jsp" %>
-        <%@include file="/fragments/searchBookModal.jsp" %>
-        <%@include file="/fragments/alert.jsp" %>
+        <%@include file="/WEB-INF/fragments/navbarHome.jsp" %>
+        <%@include file="/WEB-INF/fragments/modal.jsp" %>
+        <%@include file="/WEB-INF/fragments/searchUserModal.jsp" %>
+        <%@include file="/WEB-INF/fragments/searchBookModal.jsp" %>
+        <%@include file="/WEB-INF/fragments/alert.jsp" %>
         
         <div class="container">
             <h3>Mantendor de prestamos</h3>

@@ -17,7 +17,7 @@ public class RegisterForm extends HttpServlet {
         HttpServletResponse response
     ) throws ServletException, IOException 
     {
-        request.getRequestDispatcher("/WEB-INF/registerUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/registerUser.jsp").forward(request, response);
     }
     
 }

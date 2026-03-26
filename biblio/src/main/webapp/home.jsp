@@ -4,11 +4,11 @@
 <body>
     <head>
         <title>Biblioteca Virtual</title>
-        <%@include file="/fragments/header_scripts.jsp" %>
+        <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
         <link href="styles/navbarHome.css" rel="stylesheet">
     </head>
     <body>
-        <%@include file="/fragments/navbarHome.jsp" %>
+        <%@include file="/WEB-INF/fragments/navbarHome.jsp" %>
         
         <h3>Home</h3>
     </body>

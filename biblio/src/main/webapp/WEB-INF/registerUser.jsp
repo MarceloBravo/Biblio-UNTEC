@@ -5,13 +5,13 @@
 
         <head>
             <title>Biblioteca Virtual</title>
-            <%@include file="/fragments/header_scripts.jsp" %>
+            <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
 
                 <link rel="stylesheet" href="/styles/register_user.css">
         </head>
 
         <body>
-            <%@include file="/fragments/navbar.jsp" %>
+            <%@include file="/WEB-INF/fragments/navbar.jsp" %>
 
                 <h3>Registro de usuarios</h3>
                 <form action="${pageContext.request.contextPath}/register" method="post">

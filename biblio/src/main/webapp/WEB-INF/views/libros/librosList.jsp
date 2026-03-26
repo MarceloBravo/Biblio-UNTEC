@@ -4,7 +4,7 @@
 <body>
     <head>
         <title>Biblioteca Virtual</title>
-        <%@include file="/fragments/header_scripts.jsp" %>
+        <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
         <link href="/styles/navbarHome.css" rel="stylesheet">
         <link href="/styles/books/librosList.css" rel="stylesheet">
         <link href="/styles/modal.css" rel="stylesheet">
@@ -17,13 +17,13 @@
 
     </head>
     <body>
-        <%@include file="/fragments/navbarHome.jsp" %>
-        <%@include file="/fragments/modal.jsp" %>
-        <%@include file="/fragments/toast.jsp" %>
+        <%@include file="/WEB-INF/fragments/navbarHome.jsp" %>
+        <%@include file="/WEB-INF/fragments/modal.jsp" %>
+        <%@include file="/WEB-INF/fragments/toast.jsp" %>
         
         <div class="container">
             <h3>Mantenedor de libros</h3>
-            <%@include file="/fragments/alert.jsp" %>
+            <%@include file="/WEB-INF/fragments/alert.jsp" %>
             <form class="form-inline form-search">
                 <div class="form-group mb-2">
                     <a class="btn btn-primary mb-2" href="/books/nuevo">Nuevo libro</a>
@@ -88,7 +88,7 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <%@include file="/fragments/pagination.jsp" %>
+            <%@include file="/WEB-INF/fragments/pagination.jsp" %>
             <form id="delete-form" action="/books/eliminar" method="post"> 
                 <input type="hidden" name="id" id="delete-id" value="" />
             </form>

@@ -83,7 +83,7 @@ public class BookListServlet extends HttpServlet {
                 request.setAttribute("pagination", result.getPagination());
                 request.setAttribute("code", 200);
                 request.setAttribute("search", search);
-                request.getRequestDispatcher("/WEB-INF/libros/librosList.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/libros/librosList.jsp").forward(request, response);
             }
         }catch(Exception e){
             System.out.println(e);
@@ -92,7 +92,7 @@ public class BookListServlet extends HttpServlet {
             request.setAttribute("code", 500);
             request.setAttribute("data", result.getData());
             request.setAttribute("pagination", result.getPagination());
-            request.getRequestDispatcher("/WEB-INF/libros/librosList.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/libros/librosList.jsp").forward(request, response);
         }
         
     }

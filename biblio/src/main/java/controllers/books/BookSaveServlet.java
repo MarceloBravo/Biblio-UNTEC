@@ -63,7 +63,7 @@ public class BookSaveServlet extends HttpServlet {
             request.setAttribute("message", "Ocurrió un error al registrar el libro");
             request.setAttribute("code", 500);
             request.setAttribute("data", null);
-            request.getRequestDispatcher("/WEB-INF/libros/librosForm.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/libros/librosForm.jsp")
                     .forward(request, response);
         }
     }

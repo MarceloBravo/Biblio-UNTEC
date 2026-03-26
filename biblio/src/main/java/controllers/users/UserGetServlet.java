@@ -54,12 +54,12 @@ public class UserGetServlet extends HttpServlet{
 
             request.setAttribute("usuario", user);
             request.setAttribute("code", user != null ? 200 : 404);
-            request.getRequestDispatcher("/WEB-INF/usuarios/usuariosForm.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/usuarios/usuariosForm.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println(e);
             request.setAttribute("message", "Ocurrió un error al obtener el usuario");
             request.setAttribute("code", 500);
-            request.getRequestDispatcher("/WEB-INF/usuarios/usuariosList.jsp");
+            request.getRequestDispatcher("/WEB-INF/views/usuarios/usuariosList.jsp");
         }
     }
 }

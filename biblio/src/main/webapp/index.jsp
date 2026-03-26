@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>Biblioteca Virtual</title>
-        <%@include file="/fragments/header_scripts.jsp" %>
+        <%@include file="/WEB-INF/fragments/header_scripts.jsp" %>
         <link rel="stylesheet" href="/styles/index.css">
     </head>
     <body>

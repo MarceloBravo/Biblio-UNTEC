@@ -30,7 +30,7 @@ public class UserNuewServlet extends UserSaveServlet{
     {
         Usuario user = new Usuario();
         request.setAttribute("usuario", user);
-        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/usuarios/usuariosForm.jsp").forward(request, response);
+        request.getRequestDispatcher(request.getContextPath() + "/WEB-INF/views/usuarios/usuariosForm.jsp").forward(request, response);
     }
 
 }
