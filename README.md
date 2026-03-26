@@ -125,35 +125,11 @@ biblio/
 - **Devolución**: Registro de devolución de libros
 - **Historial**: Consulta de préstamos realizados
 
-## 🔧 Configuración Adicional
-
-### Variables de Entorno para Debug
-Para habilitar el modo debug:
-```bash
-# Windows (PowerShell)
-$env:MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
-
-# Linux/Mac
-export MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
-```
-
 ### Configuración de Base de Datos
 La aplicación se conecta a MySQL utilizando JDBC. Asegúrate de que:
 - MySQL Server esté en ejecución
 - La base de datos `untec` exista
 - Las credenciales de acceso sean correctas
-
-## 🧪 Pruebas
-
-El proyecto incluye pruebas unitarias utilizando JUnit y Mockito:
-
-```bash
-# Ejecutar todas las pruebas
-mvn test
-
-# Ejecutar pruebas específicas
-mvn test -Dtest=NombreDeLaClaseTest
-```
 
 ## 📊 Esquema de Base de Datos
 
@@ -197,15 +173,7 @@ Este es un proyecto educativo desarrollado como parte del bootcamp de Java. Las 
 
 ## 📝 Licencia
 
-Este proyecto es para fines educativos. Consulta los términos de uso del bootcamp para más información.
-
-## 🐛 Issues y Soporte
-
-Si encuentras algún problema o tienes sugerencias:
-
-1. Revisa los issues existentes en el repositorio
-2. Crea un nuevo issue describiendo el problema
-3. Proporciona detalles sobre el entorno y pasos para reproducir
+Este proyecto es para fines educativos.
 
 ## 📚 Tecnologías Utilizadas
 
