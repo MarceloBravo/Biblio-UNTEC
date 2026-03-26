@@ -1,0 +1,6 @@
+﻿controllers\RegisterForm.java
+controllers\loans\LoanDeleteServlet.java
+controllers\loans\LoanGetServlet.java
+controllers\loans\LoanNewServlet.java
+controllers\loans\LoanSaveServlet.java
+controllers\loans\LoansListServlet.java
